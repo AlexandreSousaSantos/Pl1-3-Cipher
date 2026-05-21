@@ -1,9 +1,12 @@
-﻿using Projeto_iShopping.Views;
+﻿using Projeto_iShopping.Models;
+using Projeto_iShopping.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
+using iShopping.Models;
 
 namespace Projeto_iShopping
 {
@@ -15,9 +18,29 @@ namespace Projeto_iShopping
         [STAThread]
         static void Main()
         {
+            // Inicializar a base de dados
+            try
+            {
+                Database.SetInitializer(new DropCreateDatabaseIfModelChanges<iShoppingContext>());
+                using (iShoppingContext db = new iShoppingContext())
+                {
+                    db.Database.Initialize(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao inicializar a base de dados:\n" + ex.Message,
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin());
+
+
         }
     }
 }

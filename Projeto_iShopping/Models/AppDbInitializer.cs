@@ -8,5 +8,6 @@ namespace Projeto_iShopping.Models
 {
     internal class AppDbInitializer
     {
+
     }
 }

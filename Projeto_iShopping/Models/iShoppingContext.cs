@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Data.Entity;
 
 namespace Projeto_iShopping.Models
 {
-    internal class iShoppingContext
+    public class iShoppingContext : DbContext
     {
+        public iShoppingContext() : base("name=iShoppingContext") { }
+
     }
 }

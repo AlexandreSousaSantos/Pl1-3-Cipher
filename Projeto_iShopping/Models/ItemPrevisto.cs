@@ -9,13 +9,6 @@ namespace iShopping.Models
     public class ItemPrevisto : ItemCompra
     {
 
-        public bool Adquirido { get; set; }
-
-        public int? AlteradoPorId { get; set; }
-
-        [ForeignKey("AlteradoPorId")]
-        public virtual Utilizador AlteradoPor { get; set; }
-
-        public DateTime? DataAlteracao { get; set; }
+       public float quantidadeAdquirida { get; set; }
     }
 }
