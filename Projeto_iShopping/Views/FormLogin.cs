@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Projeto_iShopping.Controller;
 namespace Projeto_iShopping.Views
 {
     public partial class FormLogin : Form
     {
+
         public FormLogin()
         {
             InitializeComponent();
@@ -30,6 +24,39 @@ namespace Projeto_iShopping.Views
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btentrar_Click(object sender, EventArgs e)
+        {
+
+            string login = TButilizador.Text.Trim();
+            string password = TBpassword.Text;
+            if (login == "" || password == "")
+            {
+
+                MessageBox.Show("Deve introduzir o login e a password.");
+            }
+            else
+            {
+                string mensagem;
+                bool ok = UtilizadorController.Autenticar(login,
+                    password, out mensagem);
+
+
+
+                if (ok)
+                {
+                    this.DialogResult = DialogResult.OK; // Sinaliza que a autenticação foi bem-sucedida
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(mensagem);
+                    TBpassword.Clear(); // Limpa o campo de senha para nova tentativa
+                    TButilizador.Focus(); // Foca o campo de login para nova tentativa
+
+                }
+            }
         }
     }
 }

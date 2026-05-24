@@ -1,6 +1,6 @@
 ﻿namespace Projeto_iShopping.Views
 {
-    partial class FormsPlaneamentoCompra
+    partial class FormPlaneamentoCompra
     {
         /// <summary>
         /// Required designer variable.

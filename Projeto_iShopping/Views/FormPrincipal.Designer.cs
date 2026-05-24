@@ -30,14 +30,14 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btModoCompra = new System.Windows.Forms.Button();
+            this.BTtiposdeartigos = new System.Windows.Forms.Button();
+            this.BTartigos = new System.Windows.Forms.Button();
+            this.BTorcamento = new System.Windows.Forms.Button();
+            this.BTplaneamento = new System.Windows.Forms.Button();
+            this.BTestatisticas = new System.Windows.Forms.Button();
+            this.BTexportarcsv = new System.Windows.Forms.Button();
+            this.BTSair = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,92 +59,98 @@
             this.dataGridView1.Size = new System.Drawing.Size(680, 215);
             this.dataGridView1.TabIndex = 1;
             // 
-            // button1
+            // btModoCompra
             // 
-            this.button1.Location = new System.Drawing.Point(49, 388);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 34);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Modo Compra";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btModoCompra.Location = new System.Drawing.Point(49, 388);
+            this.btModoCompra.Name = "btModoCompra";
+            this.btModoCompra.Size = new System.Drawing.Size(104, 34);
+            this.btModoCompra.TabIndex = 2;
+            this.btModoCompra.Text = "Modo Compra";
+            this.btModoCompra.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // BTtiposdeartigos
             // 
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 24);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Tipos de Artigos";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BTtiposdeartigos.Location = new System.Drawing.Point(12, 12);
+            this.BTtiposdeartigos.Name = "BTtiposdeartigos";
+            this.BTtiposdeartigos.Size = new System.Drawing.Size(96, 24);
+            this.BTtiposdeartigos.TabIndex = 3;
+            this.BTtiposdeartigos.Text = "Tipos de Artigos";
+            this.BTtiposdeartigos.UseVisualStyleBackColor = true;
+            this.BTtiposdeartigos.Click += new System.EventHandler(this.BTtiposdeartigos_Click);
             // 
-            // button3
+            // BTartigos
             // 
-            this.button3.Location = new System.Drawing.Point(12, 42);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 24);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Artigos";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BTartigos.Location = new System.Drawing.Point(12, 42);
+            this.BTartigos.Name = "BTartigos";
+            this.BTartigos.Size = new System.Drawing.Size(96, 24);
+            this.BTartigos.TabIndex = 4;
+            this.BTartigos.Text = "Artigos";
+            this.BTartigos.UseVisualStyleBackColor = true;
+            this.BTartigos.Click += new System.EventHandler(this.BTartigos_Click);
             // 
-            // button4
+            // BTorcamento
             // 
-            this.button4.Location = new System.Drawing.Point(12, 72);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 24);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Orçamento";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BTorcamento.Location = new System.Drawing.Point(12, 72);
+            this.BTorcamento.Name = "BTorcamento";
+            this.BTorcamento.Size = new System.Drawing.Size(96, 24);
+            this.BTorcamento.TabIndex = 5;
+            this.BTorcamento.Text = "Orçamento";
+            this.BTorcamento.UseVisualStyleBackColor = true;
+            this.BTorcamento.Click += new System.EventHandler(this.BTorcamento_Click);
             // 
-            // button6
+            // BTplaneamento
             // 
-            this.button6.Location = new System.Drawing.Point(114, 12);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(111, 24);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "Planeamento";
-            this.button6.UseVisualStyleBackColor = true;
+            this.BTplaneamento.Location = new System.Drawing.Point(114, 12);
+            this.BTplaneamento.Name = "BTplaneamento";
+            this.BTplaneamento.Size = new System.Drawing.Size(111, 24);
+            this.BTplaneamento.TabIndex = 7;
+            this.BTplaneamento.Text = "Planeamento";
+            this.BTplaneamento.UseVisualStyleBackColor = true;
+            this.BTplaneamento.Click += new System.EventHandler(this.BTplaneamento_Click);
             // 
-            // button5
+            // BTestatisticas
             // 
-            this.button5.Location = new System.Drawing.Point(231, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(86, 24);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Estatísticas";
-            this.button5.UseVisualStyleBackColor = true;
+            this.BTestatisticas.Location = new System.Drawing.Point(231, 12);
+            this.BTestatisticas.Name = "BTestatisticas";
+            this.BTestatisticas.Size = new System.Drawing.Size(86, 24);
+            this.BTestatisticas.TabIndex = 8;
+            this.BTestatisticas.Text = "Estatísticas";
+            this.BTestatisticas.UseVisualStyleBackColor = true;
+            this.BTestatisticas.Click += new System.EventHandler(this.BTestatisticas_Click);
             // 
-            // button7
+            // BTexportarcsv
             // 
-            this.button7.Location = new System.Drawing.Point(323, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(86, 24);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Exportar CSV";
-            this.button7.UseVisualStyleBackColor = true;
+            this.BTexportarcsv.Location = new System.Drawing.Point(323, 12);
+            this.BTexportarcsv.Name = "BTexportarcsv";
+            this.BTexportarcsv.Size = new System.Drawing.Size(86, 24);
+            this.BTexportarcsv.TabIndex = 9;
+            this.BTexportarcsv.Text = "Exportar CSV";
+            this.BTexportarcsv.UseVisualStyleBackColor = true;
+            this.BTexportarcsv.Click += new System.EventHandler(this.BTexportarcsv_Click);
             // 
-            // button8
+            // BTSair
             // 
-            this.button8.Location = new System.Drawing.Point(415, 12);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(54, 24);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "Sair";
-            this.button8.UseVisualStyleBackColor = true;
+            this.BTSair.Location = new System.Drawing.Point(415, 12);
+            this.BTSair.Name = "BTSair";
+            this.BTSair.Size = new System.Drawing.Size(54, 24);
+            this.BTSair.TabIndex = 10;
+            this.BTSair.Text = "Sair";
+            this.BTSair.UseVisualStyleBackColor = true;
+            this.BTSair.Click += new System.EventHandler(this.BTSair_Click);
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTSair);
+            this.Controls.Add(this.BTexportarcsv);
+            this.Controls.Add(this.BTestatisticas);
+            this.Controls.Add(this.BTplaneamento);
+            this.Controls.Add(this.BTorcamento);
+            this.Controls.Add(this.BTartigos);
+            this.Controls.Add(this.BTtiposdeartigos);
+            this.Controls.Add(this.btModoCompra);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "FormPrincipal";
@@ -159,13 +165,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btModoCompra;
+        private System.Windows.Forms.Button BTtiposdeartigos;
+        private System.Windows.Forms.Button BTartigos;
+        private System.Windows.Forms.Button BTorcamento;
+        private System.Windows.Forms.Button BTplaneamento;
+        private System.Windows.Forms.Button BTestatisticas;
+        private System.Windows.Forms.Button BTexportarcsv;
+        private System.Windows.Forms.Button BTSair;
     }
 }

@@ -17,9 +17,64 @@ namespace Projeto_iShopping.Views
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BTtiposdeartigos_Click(object sender, EventArgs e)
         {
+            FormTiposArtigo frm = new FormTiposArtigo();
+            frm.ShowDialog();
+        }
 
+        private void BTartigos_Click(object sender, EventArgs e)
+        {
+            FormArtigos frm = new FormArtigos();
+            frm.ShowDialog();
+        }
+
+        private void BTorcamento_Click(object sender, EventArgs e)
+        {
+            FormOrcamento frm = new FormOrcamento();
+            frm.ShowDialog();
+        }
+
+        private void BTplaneamento_Click(object sender, EventArgs e)
+        {
+            FormPlaneamentoCompra frm = new FormPlaneamentoCompra();
+            frm.ShowDialog();
+        }
+
+        private void BTestatisticas_Click(object sender, EventArgs e)
+        {
+            FormEstatisticas frm = new FormEstatisticas();
+            frm.ShowDialog();
+        }
+
+        private void BTexportarcsv_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Ficheiros CSV (.csv)|.csv";
+            sfd.Title = "Guardar ficheiro CSV";
+            sfd.FileName = "filmes.csv";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                ExportarCsv(sfd.FileName);
+                MessageBox.Show("Ficheiro CSV exportado com sucesso.");
+            }
+        }
+
+        private void ExportarCsv(string filePath)
+        {
+            /*StringBuilder csvContent = new StringBuilder();
+            csvContent.AppendLine("ID,Nome,Preço");
+            // Exemplo de dados a exportar
+            csvContent.AppendLine("1,Produto A,10.99");
+            csvContent.AppendLine("2,Produto B,15.49");
+            csvContent.AppendLine("3,Produto C,7.25");
+            System.IO.File.WriteAllText(filePath, csvContent.ToString());*/
+        }
+
+        private void BTSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

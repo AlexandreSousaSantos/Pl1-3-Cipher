@@ -33,6 +33,7 @@
             this.TButilizador = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TBpassword = new System.Windows.Forms.TextBox();
+            this.btentrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -81,11 +82,22 @@
             this.TBpassword.Size = new System.Drawing.Size(371, 20);
             this.TBpassword.TabIndex = 4;
             // 
+            // btentrar
+            // 
+            this.btentrar.Location = new System.Drawing.Point(348, 344);
+            this.btentrar.Name = "btentrar";
+            this.btentrar.Size = new System.Drawing.Size(82, 32);
+            this.btentrar.TabIndex = 5;
+            this.btentrar.Text = "Entrar";
+            this.btentrar.UseVisualStyleBackColor = true;
+            this.btentrar.Click += new System.EventHandler(this.btentrar_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btentrar);
             this.Controls.Add(this.TBpassword);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TButilizador);
@@ -106,5 +118,6 @@
         private System.Windows.Forms.TextBox TButilizador;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TBpassword;
+        private System.Windows.Forms.Button btentrar;
     }
 }

@@ -21,7 +21,7 @@ namespace Projeto_iShopping
             // Inicializar a base de dados
             try
             {
-                Database.SetInitializer(new DropCreateDatabaseIfModelChanges<iShoppingContext>());
+                Database.SetInitializer(new AppDbInitializer());
                 using (iShoppingContext db = new iShoppingContext())
                 {
                     db.Database.Initialize(false);
@@ -38,8 +38,14 @@ namespace Projeto_iShopping
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
-
+            
+            using (FormLogin login = new FormLogin())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new FormPrincipal());
+                }
+            }
 
         }
     }

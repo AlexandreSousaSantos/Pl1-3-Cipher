@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Projeto_iShopping.Views
 {
-    public partial class FormsPlaneamentoCompra : Form
+    public partial class FormPlaneamentoCompra : Form
     {
-        public FormsPlaneamentoCompra()
+        public FormPlaneamentoCompra()
         {
             InitializeComponent();
         }

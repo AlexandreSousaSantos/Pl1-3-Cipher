@@ -7,5 +7,7 @@ namespace Projeto_iShopping.Models
     {
         public iShoppingContext() { }
 
+        public DbSet<Utilizador> Utilizadores { get; set; }
+
     }
 }

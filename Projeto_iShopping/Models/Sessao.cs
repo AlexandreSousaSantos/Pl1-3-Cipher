@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Projeto_iShopping.Models
 {
-    internal class Sessao
+    public class Sessao
     {
+        public static Utilizador UtilizadorAtual { get; set; }
+        public static void InicializarUtilizador(Utilizador utilizador)
+        {
+            UtilizadorAtual = utilizador;
+        }
     }
 }
+
