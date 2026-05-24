@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_iShopping.Controller
 {
-    internal class UtilizadorController
+    public class UtilizadorController
     {
     }
 }
