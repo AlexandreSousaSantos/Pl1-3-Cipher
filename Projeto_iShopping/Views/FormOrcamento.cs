@@ -85,14 +85,8 @@ namespace Projeto_iShopping.Views
         private void btnElininar_Click(object sender, EventArgs e)
         {
             //Selecionar Orçamento e fazer delete
-            int Id_utilizaodr = Sessao.UtilizadorAtual.Id;
-            using (iShoppingContext db = new iShoppingContext())
-            {
-                Orcamento orcamento = db.Orcamento.Find(Id_utilizaodr);
-                db.Orcamento.Remove(orcamento);
-                db.SaveChanges();
-
-            }
+            int id = Sessao.UtilizadorAtual.Id;
+            OrcamentoController.Eliminar(id);
             MessageBox.Show("Orçamento eliminado com sucesso");
 
             LimparCampos();
@@ -108,12 +102,7 @@ namespace Projeto_iShopping.Views
 
         private void AtualizarGrelha()
         {
-            using (iShoppingContext db = new iShoppingContext())
-            {
-                DGV_Historico_de_Orcamentos.DataSource = db.Orcamento
-                    .OrderBy(v => v.ValorMaximo)
-                    .ToList();
-            }
+            DGV_Historico_de_Orcamentos.DataSource = OrcamentoController.ListarOrcamentos();
 
             if (DGV_Historico_de_Orcamentos.Columns["DataHoraAlteracao"] != null)
             {

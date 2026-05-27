@@ -20,7 +20,7 @@ namespace Projeto_iShopping.Controller
                     .FirstOrDefault(o => o.Mes == mes);
             }
         }
-        // Obter o orçamento do mês atual com base na db
+        // Obter o orçamento do mês selecionado com base na db
         public static Orcamento ObterMesAtual()
         {
             string mes = DateTime.Today.ToString("MM/yyyy");
@@ -75,7 +75,7 @@ namespace Projeto_iShopping.Controller
                 }
             }
         }
-        public static Array<Orcamento> ListarTodos()
+        public static  List<Orcamento> ListarOrcamentos()
         {
             using (iShoppingContext db = new iShoppingContext())
             {
