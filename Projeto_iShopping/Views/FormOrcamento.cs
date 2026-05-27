@@ -29,13 +29,13 @@ namespace Projeto_iShopping.Views
                 return false;
             }
 
-            if(tbMes.Text.Trim() == "")
+            if (tbMes.Text.Trim() == "")
             {
                 MessageBox.Show("O campo do mês não pode estar vazio.");
                 return false;
             }
 
-            if(!float.TryParse(TBvalorMaximo.Text, out ValorMaximo))
+            if (!float.TryParse(TBvalorMaximo.Text, out ValorMaximo))
             {
                 MessageBox.Show("Por favor, insira um valor máximo válido.");
                 return false;
@@ -49,13 +49,12 @@ namespace Projeto_iShopping.Views
 
         }
 
-
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             int mes;
             float ValorMaximo;
 
-            if(!ValidarDados(out mes, out ValorMaximo))
+            if (!ValidarDados(out mes, out ValorMaximo))
             {
                 return;
             }
@@ -63,13 +62,12 @@ namespace Projeto_iShopping.Views
             // Formatar o mês como MM/yyyy
             string mesFormatado = mes.ToString("D2") + "/" + DateTime.Now.Year.ToString();
 
-            // Obter o ID do utilizador atual (pode ser necessário ajustar com base no sistema de autenticação)
-            int usuarioId = 1; // Substituir pelo ID do utilizador autenticado
+            int Id_utilizador = Sessao.UtilizadorAtual.Id;
 
             // Criar ou atualizar o orçamento
-            OrcamentoController.CriarOuAtualizar(mesFormatado, (decimal)ValorMaximo, usuarioId);
+            OrcamentoController.CriarOuAtualizar(mesFormatado, (decimal)ValorMaximo, Id_utilizador);
 
-            MessageBox.Show("Orçamento adicionado com sucesso!");
+            MessageBox.Show("Orçamento adicionado/atualizado com sucesso!");
 
             // Limpar os campos de entrada
             tbMes.Clear();

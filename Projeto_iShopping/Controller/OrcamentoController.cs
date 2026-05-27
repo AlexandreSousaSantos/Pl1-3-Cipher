@@ -37,7 +37,7 @@ namespace Projeto_iShopping.Controller
         }
 
         //Criar ou atualizar o orçamento para um mês específico
-        public static void CriarOuAtualizar(string mes, decimal valorMaximo, int usuarioId)
+        public static void CriarOuAtualizar(string mes, decimal valorMaximo, int Id_utilizador)
         {
             using (iShoppingContext db = new iShoppingContext())
             {
@@ -63,8 +63,8 @@ namespace Projeto_iShopping.Controller
                     {
                         Mes = mes,
                         ValorMaximo = valorMaximo,
-                        CriadoPorId = usuarioId,
-                        AlteradoPorId = usuarioId
+                        CriadoPorId = Id_utilizador,
+                        AlteradoPorId = Id_utilizador
                     };
                     db.Orcamento.Add(orcamento);
                 }
@@ -72,7 +72,7 @@ namespace Projeto_iShopping.Controller
                 {
                     // Atualizar orçamento existente
                     orcamento.ValorMaximo = valorMaximo;
-                    orcamento.AlteradoPorId = usuarioId;
+                    orcamento.AlteradoPorId = Id_utilizador;
                 }
                 db.SaveChanges();
             }
