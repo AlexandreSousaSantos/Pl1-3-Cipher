@@ -18,3 +18,17 @@
 O **iShopping** é um projeto desenvolvido em **C# (Windows Forms)** que tem a persistência de dados
 em **SQL Server** através do **Entity Framework**.
 A aplicação foi feita para diminuir a falta de controlo financeiro familiar e as compras que são feitas por impulso no supermercado.
+
+### Funcionalidades Principais (Mapeadas por Sprints)
+### Sprint 1
+Focada na:
+* Criação do Repositório;
+* Diagrama de Classes;
+* Construção da Base de Dados (BD);
+* Criação da estrutura do projeto de DA;
+* Escrita das Users Stories (US);
+* Fazer a secção de "Introdução" do relatório de MDS.
+
+#### Sprint 2
+Consiste em:
+
