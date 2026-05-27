@@ -41,20 +41,6 @@ namespace Projeto_iShopping.Controller
         {
             using (iShoppingContext db = new iShoppingContext())
             {
-                if (string.IsNullOrWhiteSpace((mes)))
-                {
-                    MessageBox.Show("O mês é obrigatório.");
-                    return;
-                }
-
-                if (valorMaximo <= 0)
-                {
-                    MessageBox.Show("O valor máximo deve ser um número positivo.");
-                    return;
-                }
-
-
-
                 var orcamento = db.Orcamento.FirstOrDefault(o => o.Mes == mes);
                 if (orcamento == null)
                 {
@@ -75,6 +61,28 @@ namespace Projeto_iShopping.Controller
                     orcamento.AlteradoPorId = Id_utilizador;
                 }
                 db.SaveChanges();
+            }
+        }
+        public static void Eliminar(int Id_utilizador)
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                Orcamento orcamento = db.Orcamento.Find(Id_utilizador);
+                if (orcamento != null)
+                {
+                    db.Orcamento.Remove(orcamento);
+                    db.SaveChanges();
+                }
+            }
+        }
+        public static Array<Orcamento> ListarTodos()
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                return db.Orcamento
+                   .OrderBy(v => v.ValorMaximo)
+                   .ToList();
+              
             }
         }
     }
