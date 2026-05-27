@@ -30,12 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGV_Historico_de_Orcamentos = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -57,13 +57,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Descrição:";
             // 
-            // dataGridView1
+            // DGV_Historico_de_Orcamentos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 66);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(460, 253);
-            this.dataGridView1.TabIndex = 2;
+            this.DGV_Historico_de_Orcamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Historico_de_Orcamentos.Location = new System.Drawing.Point(12, 66);
+            this.DGV_Historico_de_Orcamentos.Name = "DGV_Historico_de_Orcamentos";
+            this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(460, 253);
+            this.DGV_Historico_de_Orcamentos.TabIndex = 2;
             // 
             // textBox1
             // 
@@ -108,12 +108,12 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGV_Historico_de_Orcamentos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormTiposArtigo";
             this.Text = "FormTiposArtigo";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,7 +123,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DGV_Historico_de_Orcamentos;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;

@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGV_Historico_de_Orcamentos = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,13 +56,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Compras Fechadas - % Previstos vs Não Previstos";
             // 
-            // dataGridView1
+            // DGV_Historico_de_Orcamentos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 60);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(897, 196);
-            this.dataGridView1.TabIndex = 2;
+            this.DGV_Historico_de_Orcamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Historico_de_Orcamentos.Location = new System.Drawing.Point(11, 60);
+            this.DGV_Historico_de_Orcamentos.Name = "DGV_Historico_de_Orcamentos";
+            this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(897, 196);
+            this.DGV_Historico_de_Orcamentos.TabIndex = 2;
             // 
             // dataGridView2
             // 
@@ -78,12 +78,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 540);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGV_Historico_de_Orcamentos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormEstatisticas";
             this.Text = "FormEstatisticas";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -94,7 +94,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DGV_Historico_de_Orcamentos;
         private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

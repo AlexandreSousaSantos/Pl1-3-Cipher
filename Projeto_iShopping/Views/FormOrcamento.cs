@@ -72,6 +72,9 @@ namespace Projeto_iShopping.Views
             // Limpar os campos de entrada
             tbMes.Clear();
             TBvalorMaximo.Clear();
+
+            LimparCampos();
+            AtualizarGrelha();
         }
 
         private void DGV_Historico_de_Orcamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -91,8 +94,9 @@ namespace Projeto_iShopping.Views
 
             }
             MessageBox.Show("Orçamento eliminado com sucesso");
+
             LimparCampos();
-            //AtualizarGrelha()
+            AtualizarGrelha();
         }
 
         private void LimparCampos()
@@ -100,6 +104,38 @@ namespace Projeto_iShopping.Views
             tbMes.Text = "";
             TBvalorMaximo.Text = "";
             DGV_Historico_de_Orcamentos.ClearSelection();
+        }
+
+        private void AtualizarGrelha()
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                DGV_Historico_de_Orcamentos.DataSource = db.Orcamento
+                    .OrderBy(v => v.ValorMaximo)
+                    .ToList();
+            }
+
+            if (DGV_Historico_de_Orcamentos.Columns["DataHoraAlteracao"] != null)
+            {
+                DGV_Historico_de_Orcamentos.Columns["DataHoraAlteracao"].HeaderText = "Data / Hora da alteração";
+                DGV_Historico_de_Orcamentos.Columns["DataHoraAlteracao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+            }
+
+            if (DGV_Historico_de_Orcamentos.Columns["Mes"] != null)
+            {
+                DGV_Historico_de_Orcamentos.Columns["Mes"].HeaderText = "Mes Alterado";
+                DGV_Historico_de_Orcamentos.Columns["Mes"].DefaultCellStyle.Format = "MM/yyyy";
+            }
+
+            if (DGV_Historico_de_Orcamentos.Columns["AlteradoPor"] != null)
+            {
+                DGV_Historico_de_Orcamentos.Columns["AlteradoPor"].HeaderText = "Alterado por";
+            }
+
+            if (DGV_Historico_de_Orcamentos.Columns["VezesVisto"] != null)
+            {
+                DGV_Historico_de_Orcamentos.Columns["VezesVisto"].HeaderText = "N.º de visualizações";
+            }
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -118,6 +154,9 @@ namespace Projeto_iShopping.Views
 
             int Id_utilizador = Sessao.UtilizadorAtual.Id;
             OrcamentoController.CriarOuAtualizar(orcamentoAtual.Mes, orcamentoAtual.ValorMaximo, Id_utilizador);
+
+            LimparCampos();
+            AtualizarGrelha();
         }
     }
 }
