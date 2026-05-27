@@ -73,5 +73,26 @@ namespace Projeto_iShopping.Views
             tbMes.Clear();
             TBvalorMaximo.Clear();
         }
+
+        private void DGV_Historico_de_Orcamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnElininar_Click(object sender, EventArgs e)
+        {
+            //Selecionar Orçamento e fazer delete
+            int Id_utilizaodr = Sessao.UtilizadorAtual.Id;
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                Orcamento orcamento = db.Orcamento.Find(Id_utilizaodr);
+                db.Orcamento.Remove(orcamento);
+                db.SaveChanges();
+
+            }
+            MessageBox.Show("Orçamento eliminado com sucesso");
+            //LimparCampo()
+            //AtualizarGrelha()
+        }
     }
 }
