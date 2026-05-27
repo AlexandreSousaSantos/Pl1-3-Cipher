@@ -39,7 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.DGV_Historico_de_Orcamentos = new System.Windows.Forms.DataGridView();
             this.btnFechar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAtualizar = new System.Windows.Forms.Button();
             this.TBvalorMaximo = new System.Windows.Forms.TextBox();
             this.btnElininar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).BeginInit();
@@ -145,16 +145,18 @@
             this.btnFechar.TabIndex = 10;
             this.btnFechar.Text = "Fechar";
             this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
-            // button2
+            // btnAtualizar
             // 
-            this.button2.Location = new System.Drawing.Point(957, 98);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 31);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Atualizar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Location = new System.Drawing.Point(957, 98);
+            this.btnAtualizar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(87, 31);
+            this.btnAtualizar.TabIndex = 11;
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // TBvalorMaximo
             // 
@@ -182,7 +184,7 @@
             this.ClientSize = new System.Drawing.Size(1061, 516);
             this.Controls.Add(this.btnElininar);
             this.Controls.Add(this.TBvalorMaximo);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.DGV_Historico_de_Orcamentos);
             this.Controls.Add(this.label4);
@@ -213,7 +215,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView DGV_Historico_de_Orcamentos;
         private System.Windows.Forms.Button btnFechar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.TextBox TBvalorMaximo;
         private System.Windows.Forms.Button btnElininar;
     }

@@ -91,8 +91,33 @@ namespace Projeto_iShopping.Views
 
             }
             MessageBox.Show("Orçamento eliminado com sucesso");
-            //LimparCampo()
+            LimparCampos();
             //AtualizarGrelha()
+        }
+
+        private void LimparCampos()
+        {
+            tbMes.Text = "";
+            TBvalorMaximo.Text = "";
+            DGV_Historico_de_Orcamentos.ClearSelection();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            Orcamento orcamentoAtual = OrcamentoController.ObterMesAtual();
+            if (orcamentoAtual == null)
+            {
+                MessageBox.Show("Nenhum orçamento encontrado para o mês atual.");
+                return;
+            }
+
+            int Id_utilizador = Sessao.UtilizadorAtual.Id;
+            OrcamentoController.CriarOuAtualizar(orcamentoAtual.Mes, orcamentoAtual.ValorMaximo, Id_utilizador);
         }
     }
 }
