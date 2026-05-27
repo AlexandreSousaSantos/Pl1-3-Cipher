@@ -31,4 +31,15 @@ Focada na:
 
 #### Sprint 2
 Consiste em:
+* Cumprir todas as Users Stories para fazer os formulários;
+* Fazer as Wireframes;
+* Escrever a análise concorrencial;
+* Fazer os critérios de aceitação;
+* Escrever no relatório a aplicação do scrum ao projeto;
+* Escrever no relatório os stakeholders e a Scrum;
+* Escrever o READ.ME.
 
+---
+
+## Arquitetura e Engenharia de Software
+O sistema assenta em **8 tabelas estruturadas com herança e composição** no Diagrama de Classes UML.
