@@ -63,11 +63,11 @@ namespace Projeto_iShopping.Controller
                 db.SaveChanges();
             }
         }
-        public static void Eliminar(int Id_utilizador)
+        public static void Eliminar(string mes)
         {
             using (iShoppingContext db = new iShoppingContext())
             {
-                Orcamento orcamento = db.Orcamento.Find(Id_utilizador);
+                Orcamento orcamento = db.Orcamento.FirstOrDefault(o => o.Mes == mes);
                 if (orcamento != null)
                 {
                     db.Orcamento.Remove(orcamento);
