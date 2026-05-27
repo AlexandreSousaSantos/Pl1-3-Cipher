@@ -9,5 +9,7 @@ namespace Projeto_iShopping.Models
 
         public DbSet<Utilizador> Utilizadores { get; set; }
 
+        public DbSet<Orcamento> Orcamento { get; set; }
+
     }
 }

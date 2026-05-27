@@ -1,12 +1,81 @@
-﻿using System;
+﻿using Projeto_iShopping.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 namespace Projeto_iShopping.Controller
 {
     public class OrcamentoController
     {
+        public static Orcamento ObterporMes(string mes)
+        {
+            // Verificar se o orçamento para o mês já existe
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                return db.Orcamento
+                    .Include("CriadoPorId")
+                    .Include("AlteradoPorId")
+                    .FirstOrDefault(o => o.Mes == mes);
+            }
+        }
+        // Obter o orçamento do mês atual com base na db
+        public static Orcamento ObterMesAtual()
+        {
+            string mes = DateTime.Today.ToString("MM/yyyy");
+            return ObterporMes(mes);
+
+        }
+
+        public static List<Orcamento> ListarTodos()
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                return db.Orcamento.Include("CriadoPorId").Include("AlteradoPorId").ToList();
+            }
+        }
+
+        //Criar ou atualizar o orçamento para um mês específico
+        public static void CriarOuAtualizar(string mes, decimal valorMaximo, int usuarioId)
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                if (string.IsNullOrWhiteSpace((mes)))
+                {
+                    MessageBox.Show("O mês é obrigatório.");
+                    return;
+                }
+
+                if (valorMaximo <= 0)
+                {
+                    MessageBox.Show("O valor máximo deve ser um número positivo.");
+                    return;
+                }
+
+
+
+                var orcamento = db.Orcamento.FirstOrDefault(o => o.Mes == mes);
+                if (orcamento == null)
+                {
+                    // Criar novo orçamento
+                    orcamento = new Orcamento
+                    {
+                        Mes = mes,
+                        ValorMaximo = valorMaximo,
+                        CriadoPorId = usuarioId,
+                        AlteradoPorId = usuarioId
+                    };
+                    db.Orcamento.Add(orcamento);
+                }
+                else
+                {
+                    // Atualizar orçamento existente
+                    orcamento.ValorMaximo = valorMaximo;
+                    orcamento.AlteradoPorId = usuarioId;
+                }
+                db.SaveChanges();
+            }
+        }
     }
 }
