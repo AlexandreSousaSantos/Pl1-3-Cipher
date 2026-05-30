@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_iShopping.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,33 @@ namespace Projeto_iShopping.Controller
 {
     public class ItemCompraController
     {
+        //Listar todos os itens de compra
+        public List<ItemCompra> ListarItensCompra()
+        {
+            using (var context = new iShoppingContext())
+            {
+                return context.ItemCompra.ToList();
+            }
+        }
+    
+    //Adicionar um novo item de compra previsto
+    public void AdicionarItemCompra(ItemCompra itemPrevisto)
+        {
+            using (var context = new iShoppingContext())
+            {
+                context.ItemCompra.Add(itemPrevisto);
+                context.SaveChanges();
+            }
+        }
+        //Adicionar um novo item de compra não previsto
+        public void AdicionarItemCompraNaoPrevisto(ItemCompra itemNaoPrevisto)
+        {
+            using (var context = new iShoppingContext())
+            {
+                context.ItemCompra.Add(itemNaoPrevisto);
+                context.SaveChanges();
+            }
+        }
+        //Não percebi!
     }
 }
