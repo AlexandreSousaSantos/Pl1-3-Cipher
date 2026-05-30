@@ -13,5 +13,9 @@ namespace Projeto_iShopping.Models
         public DbSet<TipoArtigo> TipoArtigo { get; set; }
 
         public DbSet<Artigo> Artigos { get; set; }
+
+        public DbSet<ItemCompra> ItemCompra { get; set; }
+
+        public DbSet<Compra> Compras { get; set; }
     }
 }
