@@ -12,5 +12,6 @@ namespace Projeto_iShopping.Models
         public DbSet<Orcamento> Orcamento { get; set; }
         public DbSet<TipoArtigo> TipoArtigo { get; set; }
 
+        public DbSet<Artigo> Artigos { get; set; }
     }
 }
