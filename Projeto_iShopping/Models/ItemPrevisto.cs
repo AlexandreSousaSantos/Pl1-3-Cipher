@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace iShopping.Models
+namespace Projeto_iShopping.Models
 {
     // Item planeado antes de ir às compras
     [Table("ItensPrevisto")]

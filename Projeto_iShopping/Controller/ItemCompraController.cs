@@ -10,7 +10,7 @@ namespace Projeto_iShopping.Controller
     public class ItemCompraController
     {
         //Listar todos os itens de compra
-        public List<ItemCompra> ListarItensCompra()
+        public static List<ItemCompra> ListarItensCompra()
         {
             using (var context = new iShoppingContext())
             {
@@ -19,7 +19,7 @@ namespace Projeto_iShopping.Controller
         }
     
     //Adicionar um novo item de compra previsto
-    public void AdicionarItemCompra(ItemCompra itemPrevisto)
+    public static void AdicionarItemCompra(ItemCompra itemPrevisto)
         {
             using (var context = new iShoppingContext())
             {
@@ -28,7 +28,7 @@ namespace Projeto_iShopping.Controller
             }
         }
         //Adicionar um novo item de compra não previsto
-        public void AdicionarItemCompraNaoPrevisto(ItemCompra itemNaoPrevisto)
+        public static void AdicionarItemCompraNaoPrevisto(ItemCompra itemNaoPrevisto)
         {
             using (var context = new iShoppingContext())
             {

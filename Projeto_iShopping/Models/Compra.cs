@@ -5,7 +5,7 @@ namespace Projeto_iShopping.Models
 {
     public class Compra
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string NomeCompra { get; set; }
         public DateTime DataCriacao { get; set; }
         public int CriadoPorId { get; set; }

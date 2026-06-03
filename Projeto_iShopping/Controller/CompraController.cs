@@ -47,7 +47,7 @@ namespace Projeto_iShopping.Controller
             }
         }
         //Atualizar Compra
-        public static void AtualizarCompra(string compraId, string nomeCompra)
+        public static void AtualizarCompra(int compraId, string nomeCompra)
         {
             using (iShoppingContext db = new iShoppingContext())
             {
@@ -69,7 +69,7 @@ namespace Projeto_iShopping.Controller
 
 
         //Eliminar compra
-        public static void EliminarCompra(string compraId)
+        public static void EliminarCompra(int compraId)
         {
             using (iShoppingContext db = new iShoppingContext())
             {

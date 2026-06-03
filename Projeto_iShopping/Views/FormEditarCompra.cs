@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Projeto_iShopping.Models;
 using Projeto_iShopping.Controller;
+using Projeto_iShopping.Models;
 
 namespace Projeto_iShopping.Views
 {
@@ -181,16 +182,16 @@ namespace Projeto_iShopping.Views
                 return; // O nome da compra é obrigatório, por isso sai do método
             }
 
-            string mensagem; // recebe mensagem de retorno out da camada Controller
-
             // Se o formulario estiver em modo criação de uma nova lista
             if (!_isEdicao)
             {
                 int mesAtual = DateTime.Now.Month; // busca mês atual
                 int anoAtual = DateTime.Now.Year; // busca ano atual
 
-                // Envia os parâmetros para a camada lógica de negócio no controlador
-                bool sucesso = CompraController.CriarCompra(nome, mesAtual, anoAtual, out mensagem);
+                // Verifica se já existe uma compra com o mesmo nome para o mês e ano atuais
+                CompraController.CriarCompra(nome, Sessao.UtilizadorAtual.Id);
+                bool sucesso = true; // Simula o sucesso da criação da compra, pois o método CriarCompra é void e não retorna um valor
+                string mensagem = "Compra criada com sucesso."; // Mensagem de sucesso para exibir ao utilizador
 
                 MessageBox.Show(mensagem, "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -224,7 +225,7 @@ namespace Projeto_iShopping.Views
                                 {
                                     compra.NomeCompra = nome; // Atualiza o nome da compra
                                     compra.DataCriacao = DateTime.Now; // Atualiza a data de criação para a data atual
-                                    compra.AlteradoPorId = Sessao.UtilizadorAtual; // Atualiza o ID do utilizador que fez a alteração para o ID do utilizador atual da sessão
+                                    compra.AlteradoPorId = Sessao.UtilizadorAtual.Id; // Atualiza o ID do utilizador que fez a alteração para o ID do utilizador atual da sessão
                                     
                                     db.SaveChanges(); // Salva as alterações no banco de dados
                                     
@@ -247,18 +248,20 @@ namespace Projeto_iShopping.Views
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (comboBoxArtigos.SelectedValue == null) // Verifica se um artigo foi selecionado no comboBox
-            {
-                MessageBox.Show("Por favor, selecione um artigo para adicionar.", "Erro", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error); // Exibe uma mensagem de erro
-                return; // É necessário selecionar um artigo para adicionar
-            }
-
             int artigoId = (int)comboBoxArtigos.SelectedValue; // Obtém o ID do artigo selecionado no comboBox
             int quantidade = (int)numQuantidade.Value; // Obtém a quantidade prevista do controle numérico
-            string mensagem; // Variável para receber a mensagem de retorno do controlador
 
-            bool sucesso = CompraController.(_compraId, artigoId, quantidade, out mensagem); // Chama o método do controlador para adicionar o item de compra
+            ItemCompra novoItem = new ItemPrevisto
+            {
+                CompraId = _compraId, // Define o ID da compra para o item de compra
+                ArtigoId = artigoId, // Define o ID do artigo para o item de compra
+                QuantidadePrevista = quantidade, // Define a quantidade prevista para o item de compra
+                DataCriacao = DateTime.Now, // Define a data de criação para a data atual
+                CriadoPorId = Sessao.UtilizadorAtual.Id // Define o ID do utilizador que criou o item de compra para o ID do utilizador atual da sessão
+            };
+            ItemCompraController compraController = new ItemCompraController(); // Cria uma instância do controlador de itens de compra
+            ItemCompraController.AdicionarItemCompra(novoItem); // Adiciona o novo item de compra utilizando o controlador de itens de compra
+            AtualizarGrelha(); // Atualiza a grelha para mostrar o novo item adicionado
         }
     }
 }
