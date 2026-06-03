@@ -12,11 +12,13 @@ namespace Projeto_iShopping.Models
 
         protected override void Seed(iShoppingContext context)
         {
-            Utilizador admin = new Utilizador { Username = "admin", Password = "admin123" };
-            context.Utilizadores.Add(admin);
-            context.SaveChanges();
-
             base.Seed(context);
+            if (!context.Utilizadores.Any(u => u.Username == "admin"))
+            {
+                Utilizador admin = new Utilizador { Username = "admin", Password = "admin123" };
+                context.Utilizadores.Add(admin);
+                context.SaveChanges();
+            }
         }
     }
 }

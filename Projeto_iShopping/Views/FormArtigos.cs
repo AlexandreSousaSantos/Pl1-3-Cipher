@@ -51,7 +51,7 @@ namespace Projeto_iShopping.Views
                 dgvArtigos.DataSource = artigos;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erro ao carregar os artigos: ");
             }

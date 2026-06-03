@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Projeto_iShopping.Models;
 using Projeto_iShopping.Controller;
-using Projeto_iShopping.Models;
 
 namespace Projeto_iShopping.Views
 {
@@ -200,7 +194,7 @@ namespace Projeto_iShopping.Views
                 {
                     using (iShoppingContext db = new iShoppingContext())
                     {
-                        var novaCompra = db.Compras
+                        var novaCompra = db.Compras // Consulta a tabela de compras para encontrar a compra recém-criada
                             .OrderByDescending(c => c.Id) // Ordena pelo ID mais recente
                             .FirstOrDefault(c => c.NomeCompra == nome); // Garante que o nome coincide
                     
@@ -217,9 +211,9 @@ namespace Projeto_iShopping.Views
                         }
                         else
                         {
-                            using (iShoppingContext db = new iShoppingContext())
+                            using (iShoppingContext db2 = new iShoppingContext())
                             {
-                                Compra compra = db.Compras.Find(_compraId); // Tenta encontrar a compra pelo ID atualizado
+                                Compra compra = db2.Compras.Find(_compraId); // Tenta encontrar a compra pelo ID atualizado
                                 
                                 if (compra != null && compra.FechadaPorId == null)
                                 {
@@ -227,7 +221,7 @@ namespace Projeto_iShopping.Views
                                     compra.DataCriacao = DateTime.Now; // Atualiza a data de criação para a data atual
                                     compra.AlteradoPorId = Sessao.UtilizadorAtual.Id; // Atualiza o ID do utilizador que fez a alteração para o ID do utilizador atual da sessão
                                     
-                                    db.SaveChanges(); // Salva as alterações no banco de dados
+                                    db2.SaveChanges(); // Salva as alterações no banco de dados
                                     
                                     // Exibe uma mensagem de sucesso para o utilizador
                                     MessageBox.Show("Nome da compra atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);

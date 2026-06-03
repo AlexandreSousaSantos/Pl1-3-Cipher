@@ -8,6 +8,6 @@ namespace Projeto_iShopping.Models
 {
     internal class ItemNaoPrevisto : ItemCompra
     {
-        public string Observacoes { get; set; }
+        public new string Observacoes { get; set; }
     }
 }

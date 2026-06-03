@@ -84,11 +84,23 @@ namespace Projeto_iShopping.Views
 
         private void btnElininar_Click(object sender, EventArgs e)
         {
-            //Selecionar Orçamento e fazer delete
-            int id = Sessao.UtilizadorAtual.Id;
-            OrcamentoController.Eliminar(id);
+            // Verifica se alguma linha está selecionada na grelha
+            if (DGV_Historico_de_Orcamentos.SelectedRows.Count == 0)
+            {
+                // Exibe uma mensagem de aviso se nenhuma linha estiver selecionada
+                MessageBox.Show("Por favor, selecione um orçamento para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtém o mês da linha selecionada
+            string mes = DGV_Historico_de_Orcamentos.SelectedRows[0].Cells["Mes"].Value.ToString();
+
+            // Chama o método de eliminação do orçamento
+            OrcamentoController.Eliminar(mes);
+            // Exibe uma mensagem de sucesso após a eliminação
             MessageBox.Show("Orçamento eliminado com sucesso");
 
+            // Limpa os campos de entrada e atualiza a grelha
             LimparCampos();
             AtualizarGrelha();
         }
