@@ -37,6 +37,26 @@ namespace Projeto_iShopping.Views
             _isEdicao = true; // Define o modo de edição como verdadeiro (indica edição)
         }
 
+        private void CarregaDadosCompra()
+        {
+            //mostrar os dados de compra editados na grid
+            dgvEditar.DataSource = null; // Limpa a fonte de dados do DataGridView para evitar exibir dados antigos
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                // Consulta os itens de compra relacionados à compra atual, filtrando pelo ID da compra
+                var itens = db.ItemCompra
+                    .Where(ic => ic.CompraId == _compraId) // Filtra os itens de compra pelo ID da compra
+                    .Select(ic => new // Seleciona os dados abaixo
+                    {
+                        Id = ic.Id, // Seleciona o ID do item de compra
+                        Artigo = ic.Artigo.NomeArtigo, // Seleciona o nome do artigo relacionado ao item de compra
+                        Quantidade = ic.QuantidadePrevista // Seleciona a quantidade prevista do item de compra
+                    })
+                    .ToList(); // Converte o resultado para uma lista
+                dgvEditar.DataSource = itens; // Define a fonte de dados do DataGridView como a lista de itens de compra
+            }
+        }
+
         private void FormEditarCompra_Load(object sender, EventArgs e)
         {
             CarregarArtigosDisponiveis();
@@ -95,7 +115,7 @@ namespace Projeto_iShopping.Views
 
                     // Verifica se a compra está fechada, ou seja,
                     // se o campo FechadaPorId tem um valor
-                    if (compra.FechadaPorId)
+                    if (compra.FechadaPorId != null)
                     {
                         BloquearFormularioLeitura();
                     }
@@ -143,7 +163,7 @@ namespace Projeto_iShopping.Views
                         Quantidade = ic.QuantidadePrevista // Seleciona a quantidade prevista do item de compra
                     })
                     .ToList(); // Converte o resultado para uma lista
-                DGV_Historico_de_Orcamentos.DataSource = itens; // Define a fonte de dados do DataGridView
+                dgvEditar.DataSource = itens; // Define a fonte de dados do DataGridView
                                                                 // como a lista de itens de compra
             }
         }
