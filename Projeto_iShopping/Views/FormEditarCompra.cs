@@ -78,6 +78,7 @@ namespace Projeto_iShopping.Views
             }
         }
 
+        // Método para carregar os dados da compra a ser editada
         private void CarregarDadosCompra()
         {
             // Carrega os dados da compra a ser editada
@@ -185,13 +186,31 @@ namespace Projeto_iShopping.Views
                             _compraId = novaCompra.Id; // Atualiza a variável da classe com o ID real da BD
                             _isEdicao = true; // Muda o estado para modo de Edição
 
-                            btnAdicionar.Enabled = true;
+                            btnAdicionar.Enabled = true; // Ativa o botão de adicionar itens, pois agora temos uma compra criada
                             btnRemoverItem.Enabled = true;
                             comboBoxArtigos.Enabled = true;
                             numQuantidade.Enabled = true;
                             btnGuardarCompra.Text = "Atualizar Nome"; // Modifica o texto do botão do topo
                         }
-                    
+                        else
+                        {
+                            using (iShoppingContext db = new iShoppingContext())
+                            {
+                                var compra = db.Compras.Find(_compraId); // Tenta encontrar a compra pelo ID atualizado
+                                if (compra != null)
+                                {
+                                    compra.NomeCompra = nome; // Atualiza o nome da compra
+                                    db.SaveChanges(); // Salva as alterações no banco de dados
+                                    // Exibe uma mensagem de sucesso para o utilizador
+                                    MessageBox.Show("Nome da compra atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                }
+                                else // Se a compra não for encontrada
+                                {
+                                    // Exibe uma mensagem de erro
+                                    MessageBox.Show("Erro ao atualizar o nome da compra. Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                        }
                     }
                 }
             
