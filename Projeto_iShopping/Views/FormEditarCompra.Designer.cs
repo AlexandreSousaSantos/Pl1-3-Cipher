@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNomeCompra = new System.Windows.Forms.TextBox();
-            this.DGV_Historico_de_Orcamentos = new System.Windows.Forms.DataGridView();
+            this.dgvEditar = new System.Windows.Forms.DataGridView();
             this.comboBoxArtigos = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.btnGuardarCompra = new System.Windows.Forms.Button();
             this.btnRemoverItem = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,26 +68,26 @@
             // txtNomeCompra
             // 
             this.txtNomeCompra.Location = new System.Drawing.Point(23, 86);
-            this.txtNomeCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNomeCompra.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomeCompra.Name = "txtNomeCompra";
             this.txtNomeCompra.Size = new System.Drawing.Size(457, 22);
             this.txtNomeCompra.TabIndex = 2;
             // 
-            // DGV_Historico_de_Orcamentos
+            // dgvEditar
             // 
-            this.DGV_Historico_de_Orcamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Historico_de_Orcamentos.Location = new System.Drawing.Point(23, 165);
-            this.DGV_Historico_de_Orcamentos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DGV_Historico_de_Orcamentos.Name = "DGV_Historico_de_Orcamentos";
-            this.DGV_Historico_de_Orcamentos.RowHeadersWidth = 51;
-            this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(997, 308);
-            this.DGV_Historico_de_Orcamentos.TabIndex = 3;
+            this.dgvEditar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEditar.Location = new System.Drawing.Point(23, 165);
+            this.dgvEditar.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvEditar.Name = "dgvEditar";
+            this.dgvEditar.RowHeadersWidth = 51;
+            this.dgvEditar.Size = new System.Drawing.Size(997, 308);
+            this.dgvEditar.TabIndex = 3;
             // 
             // comboBoxArtigos
             // 
             this.comboBoxArtigos.FormattingEnabled = true;
             this.comboBoxArtigos.Location = new System.Drawing.Point(129, 498);
-            this.comboBoxArtigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxArtigos.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxArtigos.Name = "comboBoxArtigos";
             this.comboBoxArtigos.Size = new System.Drawing.Size(365, 24);
             this.comboBoxArtigos.TabIndex = 5;
@@ -115,7 +115,7 @@
             // numQuantidade
             // 
             this.numQuantidade.Location = new System.Drawing.Point(559, 500);
-            this.numQuantidade.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numQuantidade.Margin = new System.Windows.Forms.Padding(4);
             this.numQuantidade.Name = "numQuantidade";
             this.numQuantidade.Size = new System.Drawing.Size(160, 22);
             this.numQuantidade.TabIndex = 8;
@@ -123,7 +123,7 @@
             // btnAdicionar
             // 
             this.btnAdicionar.Location = new System.Drawing.Point(787, 498);
-            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(104, 25);
             this.btnAdicionar.TabIndex = 9;
@@ -133,7 +133,7 @@
             // btnGuardarCompra
             // 
             this.btnGuardarCompra.Location = new System.Drawing.Point(864, 86);
-            this.btnGuardarCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardarCompra.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardarCompra.Name = "btnGuardarCompra";
             this.btnGuardarCompra.Size = new System.Drawing.Size(156, 43);
             this.btnGuardarCompra.TabIndex = 10;
@@ -144,7 +144,7 @@
             // btnRemoverItem
             // 
             this.btnRemoverItem.Location = new System.Drawing.Point(899, 498);
-            this.btnRemoverItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoverItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoverItem.Name = "btnRemoverItem";
             this.btnRemoverItem.Size = new System.Drawing.Size(121, 25);
             this.btnRemoverItem.TabIndex = 11;
@@ -174,15 +174,15 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxArtigos);
-            this.Controls.Add(this.DGV_Historico_de_Orcamentos);
+            this.Controls.Add(this.dgvEditar);
             this.Controls.Add(this.txtNomeCompra);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormEditarCompra";
             this.Text = "FormEditarCompra";
             this.Load += new System.EventHandler(this.FormEditarCompra_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,7 +194,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNomeCompra;
-        private System.Windows.Forms.DataGridView DGV_Historico_de_Orcamentos;
+        private System.Windows.Forms.DataGridView dgvEditar;
         private System.Windows.Forms.ComboBox comboBoxArtigos;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
