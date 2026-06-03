@@ -129,6 +129,7 @@
             this.btnAdicionar.TabIndex = 9;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // btnGuardarCompra
             // 
