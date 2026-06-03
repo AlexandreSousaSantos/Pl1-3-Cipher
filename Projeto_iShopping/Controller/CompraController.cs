@@ -33,37 +33,54 @@ namespace Projeto_iShopping.Controller
         //Criar compra
         public static void CriarCompra(string nomeCompra, int criadoPorId)
         {
-            using (iShoppingContext db = new iShoppingContext())
+            try
             {
-                Compra novaCompra = new Compra
+                using (iShoppingContext db = new iShoppingContext())
                 {
-                    NomeCompra = nomeCompra,
-                    DataCriacao = DateTime.Now,
-                    CriadoPorId = criadoPorId,
-                    Estado = "Aberta"
-                };
-                db.Compras.Add(novaCompra);
-                db.SaveChanges();
+                    Compra novaCompra = new Compra
+                    {
+                        NomeCompra = nomeCompra,
+                        DataCriacao = DateTime.Now,
+                        CriadoPorId = criadoPorId,
+                        Estado = "Aberta"
+                    };
+                    db.Compras.Add(novaCompra);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao criar compra: " + ex.Message);
+                return;
             }
         }
+
         //Atualizar Compra
         public static void AtualizarCompra(int compraId, string nomeCompra)
         {
-            using (iShoppingContext db = new iShoppingContext())
+            try
             {
-                Compra compra = db.Compras.Find(compraId);
-                if (compra == null)
+                using (iShoppingContext db = new iShoppingContext())
                 {
-                    MessageBox.Show("Compra não encontrada.");
-                    return;
+                    Compra compra = db.Compras.Find(compraId);
+                    if (compra == null)
+                    {
+                        MessageBox.Show("Compra não encontrada.");
+                        return;
+                    }
+                    if (compra.Estado == "Fechada")
+                    {
+                        MessageBox.Show("Não é possível atualizar uma compra fechada.");
+                        return;
+                    }
+                    compra.NomeCompra = nomeCompra;
+                    db.SaveChanges();
                 }
-                if (compra.Estado == "Fechada")
-                {
-                    MessageBox.Show("Não é possível atualizar uma compra fechada.");
-                    return;
-                }
-                compra.NomeCompra = nomeCompra;
-                db.SaveChanges();
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar compra: " + ex.Message);
+                return;
             }
         }
 
@@ -71,23 +88,30 @@ namespace Projeto_iShopping.Controller
         //Eliminar compra
         public static void EliminarCompra(int compraId)
         {
-            using (iShoppingContext db = new iShoppingContext())
+            try
             {
-                Compra compra = db.Compras.Find(compraId);
-                if (compra == null)
+                using (iShoppingContext db = new iShoppingContext())
                 {
-                 MessageBox.Show("Compra não encontrada.");
-                 return;
+                    Compra compra = db.Compras.Find(compraId);
+                    if (compra == null)
+                    {
+                        MessageBox.Show("Compra não encontrada.");
+                        return;
+                    }
+                    if (compra.Estado == "Fechada")
+                    {
+                        MessageBox.Show("Não é possível eliminar uma compra fechada.");
+                        return;
+                    }
+                    db.Compras.Remove(compra);
+                    db.SaveChanges();
                 }
-                if (compra.Estado == "Fechada")
-                {
-                    MessageBox.Show("Não é possível eliminar uma compra fechada.");
-                    return;
-                }
-                db.Compras.Remove(compra);
-                db.SaveChanges();
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao eliminar compra: " + ex.Message);
+                return;
+            }
         }
     }
 }

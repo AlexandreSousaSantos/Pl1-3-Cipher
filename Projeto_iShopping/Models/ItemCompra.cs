@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Projeto_iShopping.Models
 {
     [Table("ItensCompra")]
-    public abstract class ItemCompra
+    public class ItemCompra
     {
         public int Id { get; set; }
 

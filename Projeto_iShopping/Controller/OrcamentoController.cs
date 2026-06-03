@@ -15,8 +15,8 @@ namespace Projeto_iShopping.Controller
             using (iShoppingContext db = new iShoppingContext())
             {
                 return db.Orcamento
-                    .Include("CriadoPorId")
-                    .Include("AlteradoPorId")
+                    .Include("CriadoPor")
+                    .Include("AlteradoPor")
                     .FirstOrDefault(o => o.Mes == mes);
             }
         }
@@ -32,7 +32,7 @@ namespace Projeto_iShopping.Controller
         {
             using (iShoppingContext db = new iShoppingContext())
             {
-                return db.Orcamento.Include("CriadoPorId").Include("AlteradoPorId").ToList();
+                return db.Orcamento.Include("CriadoPor").Include("AlteradoPor").ToList();
             }
         }
 
@@ -50,7 +50,7 @@ namespace Projeto_iShopping.Controller
                         Mes = mes,
                         ValorMaximo = valorMaximo,
                         CriadoPorId = Id_utilizador,
-                        AlteradoPorId = Id_utilizador
+                        AlteradoPor = Id_utilizador
                     };
                     db.Orcamento.Add(orcamento);
                 }
@@ -58,7 +58,7 @@ namespace Projeto_iShopping.Controller
                 {
                     // Atualizar orçamento existente
                     orcamento.ValorMaximo = valorMaximo;
-                    orcamento.AlteradoPorId = Id_utilizador;
+                    orcamento.AlteradoPor = Id_utilizador;
                 }
                 db.SaveChanges();
             }

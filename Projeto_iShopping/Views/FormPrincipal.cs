@@ -29,6 +29,12 @@ namespace Projeto_iShopping.Views
             frm.ShowDialog();
         }
 
+        private void btnEditarCompra_Click(object sender, EventArgs e)
+        {
+            FormEditarCompra frm = new FormEditarCompra();
+            frm.ShowDialog();
+        }
+
         private void BTorcamento_Click(object sender, EventArgs e)
         {
             FormOrcamento frm = new FormOrcamento();
@@ -75,6 +81,11 @@ namespace Projeto_iShopping.Views
         private void BTSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
