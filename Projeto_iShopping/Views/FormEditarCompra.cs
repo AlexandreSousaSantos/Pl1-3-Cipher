@@ -63,11 +63,13 @@ namespace Projeto_iShopping.Views
 
             if (_isEdicao)
             {
+                // Se estamos em modo de edição, carregamos os dados da compra existente
                 CarregaDadosCompra();
                 AtualizarGrelha();
             }
             else
             {
+                // Se estamos em modo de criação, configuramos o formulário para criar uma nova compra
                 ConfigurarModoNovaCompra();
             }
         }

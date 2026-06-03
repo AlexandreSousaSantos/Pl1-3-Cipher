@@ -72,19 +72,42 @@ namespace Projeto_iShopping.Views
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // quando clicar no botão "Guardar", os dados do artigo serão salvos
-            string nomeArtigo = tbNomeArtigo.Text;
-            if (nomeArtigo.Length == 0)
+            try
             {
-                MessageBox.Show("O nome do artigo não pode estar vazio.");
+                // Obter o ID do tipo de artigo selecionado
+                int tipoId = (int)cmbTipo.SelectedValue;
 
+                // Se existe uma linha selecionada → atualizar
+                if (dgvArtigos.SelectedRows.Count > 0)
+                {
+                    int id = (int)dgvArtigos.SelectedRows[0].Cells["Id"].Value;
+
+                    ArtigoController.Atualizar(
+                        id,
+                        tbNomeArtigo.Text,
+                        tipoId 
+                    );
+
+                    MessageBox.Show("Artigo atualizado com sucesso!");
+                }
+                else
+                {
+                    // Caso contrário → criar novo artigo
+                    ArtigoController.Criar(
+                        tbNomeArtigo.Text,
+                        tipoId
+                    );
+
+                    MessageBox.Show("Artigo criado com sucesso!");
+                }
+
+                // Atualizar a grelha depois de guardar
+                dgvArtigos.DataSource = ArtigoController.ListarTodos();
             }
-            else
+            catch (Exception ex)
             {
-                // Aqui você pode adicionar o código para salvar o artigo no banco de dados ou em uma lista
-                MessageBox.Show("Artigo salvo com sucesso!");
+                MessageBox.Show("Erro ao guardar o artigo: " + ex.Message);
             }
-            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
