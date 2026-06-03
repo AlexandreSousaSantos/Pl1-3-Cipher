@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Projeto_iShopping.Models
 {
     public class Utilizador
@@ -6,5 +8,10 @@ namespace Projeto_iShopping.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+
+        public static implicit operator Utilizador(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

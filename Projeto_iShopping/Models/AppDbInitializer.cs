@@ -9,7 +9,6 @@ namespace Projeto_iShopping.Models
 {
     internal class AppDbInitializer : DropCreateDatabaseIfModelChanges<iShoppingContext>
     {
-
         protected override void Seed(iShoppingContext context)
         {
             base.Seed(context);
