@@ -30,6 +30,9 @@ namespace Projeto_iShopping.Views
                 //a lista de tipos de artigo é obtida através do controlador e atribuída ao DataGridView
                 List<TipoArtigo> tipos = TipoArtigoController.ListarTodos();
                 dvgTipos.DataSource = tipos;
+                dvgTipos.ClearSelection();
+                dvgTipos.CurrentCell = null;
+
             }
             // caso aconteça algum erro durante a obtenção dos dados, uma mensagem de erro é exibida para o usuário
             catch (Exception ex)
@@ -41,6 +44,7 @@ namespace Projeto_iShopping.Views
         private void btnNovo_Click(object sender, EventArgs e)
         {
             dvgTipos.ClearSelection();
+            dvgTipos.CurrentCell = null;
             tbDescricao.Clear();
             //o focus serve para colocar o cursor no campo de descrição, facilitando a inserção de um novo tipo de artigo
             tbDescricao.Focus();
@@ -50,6 +54,7 @@ namespace Projeto_iShopping.Views
         {
             try
             {
+              
                 if (dvgTipos.CurrentRow != null)
                 {
                     //atualizar o tipo de artigo selecionado
@@ -78,19 +83,19 @@ namespace Projeto_iShopping.Views
                 DataGridViewRow linha = dvgTipos.SelectedRows[0];
 
                 // 2. Obter o objeto Artigo associado à linha
-                Artigo artigoSelecionado = (Artigo)linha.DataBoundItem;
+                TipoArtigo tipoArtigoSelecionado = (TipoArtigo)linha.DataBoundItem;
 
                 // 3. Eliminar pelo ID
-                ArtigoController.Eliminar(artigoSelecionado.Id);
+                TipoArtigoController.Eliminar(tipoArtigoSelecionado.Id);
 
                 // 4. Atualizar a grelha
-                dvgTipos.DataSource = ArtigoController.ListarTodos();
+                dvgTipos.DataSource = TipoArtigoController.ListarTodos();
 
                 MessageBox.Show("Tipo de artigo eliminado com sucesso!");
             }
             else
             {
-                MessageBox.Show("Erro");
+                MessageBox.Show("Tem que selecionar uma linha");
             }
         }
     }

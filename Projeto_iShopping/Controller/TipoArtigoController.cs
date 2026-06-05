@@ -15,7 +15,7 @@ namespace Projeto_iShopping.Controller
         {
             using (iShoppingContext db = new iShoppingContext())
             {
-                return db.TipoArtigo.OrderBy(d => d.Descricao).ToList();
+                return db.TipoArtigo.ToList();
             }
         }
         // irá preocurar e retornar o TipoArtigo com o id passado como parâmetro

@@ -149,6 +149,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormArtigos";
             this.Text = "FormArtigos";
+            this.Load += new System.EventHandler(this.FrmArtigos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvgArtigos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -28,7 +28,7 @@ namespace Projeto_iShopping.Models
 
         public DateTime DataCriacao { get; set; }
 
-        public int CriadoPorId { get; set; }
+        public int? CriadoPorId { get; set; }
 
         [ForeignKey("CriadoPorId")]
         public Utilizador CriadoPor { get; set; }

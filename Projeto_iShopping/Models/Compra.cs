@@ -9,7 +9,7 @@ namespace Projeto_iShopping.Models
         public int Id { get; set; }
         public string NomeCompra { get; set; }
         public DateTime DataCriacao { get; set; }
-        public int CriadoPorId { get; set; }
+        public int? CriadoPorId { get; set; }
 
         [ForeignKey("CriadoPorId")]
         public virtual Utilizador CriadoPor { get; set; }
