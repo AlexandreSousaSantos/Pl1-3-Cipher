@@ -167,76 +167,63 @@ namespace Projeto_iShopping.Views
 
         private void btnGuardarCompra_Click(object sender, EventArgs e)
         {
-            string nome = txtNomeCompra.Text.Trim(); // Obtém o nome da compra do campo de texto,
-                                                           // e retira espaços em branco
+            string nome = txtNomeCompra.Text.Trim();
 
-            if (string.IsNullOrEmpty(nome)) // Verifica se o nome da compra está vazio
+            if (string.IsNullOrEmpty(nome))
             {
-                MessageBox.Show("O nome da compra não pode estar vazio.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); // Exibe uma mensagem de erro
-                return; // O nome da compra é obrigatório, por isso sai do método
+                MessageBox.Show("Nome obrigatório.");
+                return;
             }
 
-            // Se o formulario estiver em modo criação de uma nova lista
-            if (!_isEdicao)
+            using (iShoppingContext db = new iShoppingContext())
             {
-                int mesAtual = DateTime.Now.Month; // busca mês atual
-                int anoAtual = DateTime.Now.Year; // busca ano atual
-
-                // Verifica se já existe uma compra com o mesmo nome para o mês e ano atuais
-                CompraController.CriarCompra(nome, Sessao.UtilizadorAtual.Id);
-                bool sucesso = true; // Simula o sucesso da criação da compra, pois o método CriarCompra é void e não retorna um valor
-                string mensagem = "Compra criada com sucesso."; // Mensagem de sucesso para exibir ao utilizador
-
-                MessageBox.Show(mensagem, "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Se o controlador conseguir gravar o registo com sucesso
-                if (sucesso)
+                if (!_isEdicao)
                 {
-                    using (iShoppingContext db = new iShoppingContext())
+                    var compra = new Compra
                     {
-                        var novaCompra = db.Compras // Consulta a tabela de compras para encontrar a compra recém-criada
-                            .OrderByDescending(c => c.Id) // Ordena pelo ID mais recente
-                            .FirstOrDefault(c => c.NomeCompra == nome); // Garante que o nome coincide
-                    
-                        if (novaCompra != null)
-                        {
-                            _compraId = novaCompra.Id; // Atualiza a variável da classe com o ID real da BD
-                            _isEdicao = true; // Muda o estado para modo de Edição
+                        NomeCompra = nome,
+                        DataCriacao = DateTime.Now,
+                        CriadoPorId = Sessao.UtilizadorAtual.Id
+                    };
 
-                            btnAdicionar.Enabled = true; // Ativa o botão de adicionar itens, pois agora temos uma compra criada
-                            btnRemoverItem.Enabled = true;
-                            comboBoxArtigos.Enabled = true;
-                            numQuantidade.Enabled = true;
-                            btnGuardarCompra.Text = "Atualizar Nome"; // Modifica o texto do botão do topo
-                        }
-                        else
-                        {
-                            using (iShoppingContext db2 = new iShoppingContext())
-                            {
-                                Compra compra = db2.Compras.Find(_compraId); // Tenta encontrar a compra pelo ID atualizado
-                                
-                                if (compra != null && compra.FechadaPorId == null)
-                                {
-                                    compra.NomeCompra = nome; // Atualiza o nome da compra
-                                    compra.DataCriacao = DateTime.Now; // Atualiza a data de criação para a data atual
-                                    compra.AlteradoPorId = Sessao.UtilizadorAtual.Id; // Atualiza o ID do utilizador que fez a alteração para o ID do utilizador atual da sessão
-                                    
-                                    db2.SaveChanges(); // Salva as alterações no banco de dados
-                                    
-                                    // Exibe uma mensagem de sucesso para o utilizador
-                                    MessageBox.Show("Nome da compra atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    db.Compras.Add(compra);
+                    db.SaveChanges();
 
-                                }
-                                else // Se a compra não for encontrada
-                                {
-                                    // Exibe uma mensagem de erro
-                                    MessageBox.Show("Erro ao atualizar o nome da compra. Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                        }
-                    }
+                    _compraId = compra.Id;
+                    _isEdicao = true;
+
+                    btnAdicionar.Enabled = true;
+                    btnRemoverItem.Enabled = true;
+                    comboBoxArtigos.Enabled = true;
+                    numQuantidade.Enabled = true;
+                    // ATENÇÃO A COMPRA NÃO ESTÁ A SER EDITADA
+                    btnGuardarCompra.Text = "Atualizar Nome";
+
+                    MessageBox.Show("Compra criada com sucesso.");
                 }
-            
+                else
+                {
+                    var compra = db.Compras.Find(_compraId);
+
+                    if (compra == null)
+                    {
+                        MessageBox.Show("Compra não encontrada.");
+                        return;
+                    }
+
+                    if (compra.FechadaPorId != null)
+                    {
+                        MessageBox.Show("Compra fechada.");
+                        return;
+                    }
+
+                    compra.NomeCompra = nome;
+                    compra.AlteradoPorId = Sessao.UtilizadorAtual.Id;
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Compra atualizada com sucesso.");
+                }
             }
         }
 
@@ -274,6 +261,30 @@ namespace Projeto_iShopping.Views
             
             ItemCompraController.AdicionarItemCompra(novoItem); // Adiciona o novo item de compra utilizando o controlador de itens de compra
             AtualizarGrelha(); // Atualiza a grelha para mostrar o novo item adicionado
+        }
+
+        private void btnRemoverItem_Click(object sender, EventArgs e)
+        {
+            if (dgvEditar.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleciona um item.");
+                return;
+            }
+
+            int id = (int)dgvEditar.SelectedRows[0].Cells["Id"].Value;
+
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                var item = db.ItemCompra.Find(id);
+
+                if (item != null)
+                {
+                    db.ItemCompra.Remove(item);
+                    db.SaveChanges();
+                }
+            }
+
+            AtualizarGrelha();
         }
     }
 }
