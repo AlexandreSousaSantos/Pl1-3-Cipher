@@ -124,7 +124,7 @@
             this.Controls.Add(this.dgvCompras);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPlaneamentoCompra";
-            this.Text = "FormsPlaneamentoCompra";
+            this.Text = "Planeamento de Compras";
             this.Load += new System.EventHandler(this.FormPlaneamentoCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
             this.ResumeLayout(false);

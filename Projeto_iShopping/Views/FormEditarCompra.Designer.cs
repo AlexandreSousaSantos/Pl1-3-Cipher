@@ -182,7 +182,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormEditarCompra";
-            this.Text = "FormEditarCompra";
+            this.Text = "Criar ou editar uma compra";
             this.Load += new System.EventHandler(this.FormEditarCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();

@@ -63,7 +63,7 @@
             // TButilizador
             // 
             this.TButilizador.Location = new System.Drawing.Point(269, 241);
-            this.TButilizador.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TButilizador.Margin = new System.Windows.Forms.Padding(4);
             this.TButilizador.Name = "TButilizador";
             this.TButilizador.Size = new System.Drawing.Size(493, 22);
             this.TButilizador.TabIndex = 2;
@@ -82,7 +82,7 @@
             // TBpassword
             // 
             this.TBpassword.Location = new System.Drawing.Point(269, 320);
-            this.TBpassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TBpassword.Margin = new System.Windows.Forms.Padding(4);
             this.TBpassword.Name = "TBpassword";
             this.TBpassword.PasswordChar = '*';
             this.TBpassword.Size = new System.Drawing.Size(493, 22);
@@ -91,7 +91,7 @@
             // btentrar
             // 
             this.btentrar.Location = new System.Drawing.Point(464, 423);
-            this.btentrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btentrar.Margin = new System.Windows.Forms.Padding(4);
             this.btentrar.Name = "btentrar";
             this.btentrar.Size = new System.Drawing.Size(109, 39);
             this.btentrar.TabIndex = 5;
@@ -110,9 +110,9 @@
             this.Controls.Add(this.TButilizador);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogin";
-            this.Text = "FormLogin";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

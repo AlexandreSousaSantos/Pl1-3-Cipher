@@ -196,7 +196,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormOrcamento";
-            this.Text = "FormOrcamento";
+            this.Text = "Orçamento Mensal";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

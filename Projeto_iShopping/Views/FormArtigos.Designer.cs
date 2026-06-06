@@ -55,7 +55,7 @@
             // 
             this.dvgArtigos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgArtigos.Location = new System.Drawing.Point(51, 73);
-            this.dvgArtigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dvgArtigos.Margin = new System.Windows.Forms.Padding(4);
             this.dvgArtigos.Name = "dvgArtigos";
             this.dvgArtigos.RowHeadersWidth = 51;
             this.dvgArtigos.Size = new System.Drawing.Size(983, 325);
@@ -75,7 +75,7 @@
             // tbNomeArtigo
             // 
             this.tbNomeArtigo.Location = new System.Drawing.Point(52, 457);
-            this.tbNomeArtigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNomeArtigo.Margin = new System.Windows.Forms.Padding(4);
             this.tbNomeArtigo.Name = "tbNomeArtigo";
             this.tbNomeArtigo.Size = new System.Drawing.Size(355, 22);
             this.tbNomeArtigo.TabIndex = 3;
@@ -94,7 +94,7 @@
             // btnNovo
             // 
             this.btnNovo.Location = new System.Drawing.Point(39, 511);
-            this.btnNovo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNovo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(123, 28);
             this.btnNovo.TabIndex = 6;
@@ -105,7 +105,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(169, 511);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 28);
             this.btnGuardar.TabIndex = 7;
@@ -116,7 +116,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(277, 511);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 28);
             this.btnEliminar.TabIndex = 8;
@@ -146,9 +146,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dvgArtigos);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormArtigos";
-            this.Text = "FormArtigos";
+            this.Text = "Artigos";
             this.Load += new System.EventHandler(this.FrmArtigos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvgArtigos)).EndInit();
             this.ResumeLayout(false);
