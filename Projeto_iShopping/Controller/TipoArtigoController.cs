@@ -1,6 +1,7 @@
 ﻿using Projeto_iShopping.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,17 +82,25 @@ namespace Projeto_iShopping.Controller
         // irá remover o TipoArtigo com o id passado como parâmetro
         public static void Eliminar(int id)
         {
-            using (iShoppingContext db = new iShoppingContext())
+            try
             {
-                
-                var tipo = db.TipoArtigo.Find(id);
-                if (tipo == null)
+                using (iShoppingContext db = new iShoppingContext())
                 {
-                    MessageBox.Show("Tipo de Artigo não encontrado.");
-                    return;
+
+                    var tipo = db.TipoArtigo.Find(id);
+                    if (tipo == null)
+                    {
+                        MessageBox.Show("Tipo de Artigo não encontrado.");
+                        return;
+                    }
+                    db.TipoArtigo.Remove(tipo);
+                    db.SaveChanges();
                 }
-                db.TipoArtigo.Remove(tipo);
-                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show(ex.InnerException?.InnerException?.Message
+                                ?? ex.Message);
             }
         }
     }

@@ -242,7 +242,25 @@ namespace Projeto_iShopping.Views
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            int artigoId = (int)comboBoxArtigos.SelectedValue; // Obtém o ID do artigo selecionado no comboBox
+            if (Sessao.UtilizadorAtual == null)
+            {
+                MessageBox.Show("Utilizador não autenticado.");
+                return;
+            }
+
+            if (comboBoxArtigos.SelectedValue == null)
+            {
+                MessageBox.Show("Selecione um artigo.");
+                return;
+            }
+
+            if (_compraId <= 0)
+            {
+                MessageBox.Show("Compra inválida. Crie primeiro a compra.");
+                return;
+            }
+
+            int artigoId = Convert.ToInt32(comboBoxArtigos.SelectedValue); // Obtém o ID do artigo selecionado no comboBox
             int quantidade = (int)numQuantidade.Value; // Obtém a quantidade prevista do controle numérico
 
             ItemCompra novoItem = new ItemPrevisto
@@ -253,7 +271,7 @@ namespace Projeto_iShopping.Views
                 DataCriacao = DateTime.Now, // Define a data de criação para a data atual
                 CriadoPorId = Sessao.UtilizadorAtual.Id // Define o ID do utilizador que criou o item de compra para o ID do utilizador atual da sessão
             };
-            ItemCompraController compraController = new ItemCompraController(); // Cria uma instância do controlador de itens de compra
+            
             ItemCompraController.AdicionarItemCompra(novoItem); // Adiciona o novo item de compra utilizando o controlador de itens de compra
             AtualizarGrelha(); // Atualiza a grelha para mostrar o novo item adicionado
         }

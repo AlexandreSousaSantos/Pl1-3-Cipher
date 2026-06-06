@@ -20,7 +20,7 @@ namespace Projeto_iShopping.Views
         public FormArtigos()
         {
             InitializeComponent();
-            dvgArtigos = new System.Windows.Forms.DataGridView();
+            //dvgArtigos = new System.Windows.Forms.DataGridView();
         }
 
         private void FrmArtigos_Load(object sender, EventArgs e)
@@ -31,37 +31,41 @@ namespace Projeto_iShopping.Views
 
         private void CarregarTipos()
         {
-          cmbTipo.Items.Clear();
+			var tipos = TipoArtigoController.ListarTodos();
 
-            // Carregar os tipos de artigo do banco de dados ou de uma lista
-            List<TipoArtigo> tipos = TipoArtigoController.ListarTodos();
-            foreach (TipoArtigo t in tipos)
-                {
-                // Adicionar cada tipo de artigo ao ComboBox   
-                cmbTipo.Items.Add(t.Descricao);
-                }
-          
-        }
+			cmbTipo.DataSource = tipos;
+			cmbTipo.DisplayMember = "Descricao";
+			cmbTipo.ValueMember = "Id";
+		}
 
-        private void CarregarArtigos()
-        {
-             
-            try
-            {
+		private void CarregarArtigos()
+		{
+			try
+			{
+				var artigos = ArtigoController.ListarTodos() ?? new List<Artigo>();
 
-                List<Artigo> artigos = ArtigoController.ListarTodos();
-                dvgArtigos.DataSource = artigos;
-                MessageBox.Show(artigos.First().ToString());
+				dvgArtigos.DataSource = artigos.Select(a => new
+				{
+					a.Id,
+					a.NomeArtigo,
+					Tipo = a.TipoArtigo.Descricao
+				}).ToList();
 
-                
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("Erro ao carregar os artigos: " + err.InnerException.Message);
-            }
-        }
+				if (artigos.Count == 0)
+				{
+					MessageBox.Show("Não existem artigos.");
+					return;
+				}
 
-        private void btnNovo_Click(object sender, EventArgs e)
+				MessageBox.Show(artigos[0].NomeArtigo);
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
+			}
+		}
+
+		private void btnNovo_Click(object sender, EventArgs e)
         {
             // quando clicar no botão "Novo", abrirá um formulário para adicionar um novo artigo
             dvgArtigos.ClearSelection();
@@ -78,8 +82,14 @@ namespace Projeto_iShopping.Views
         {
             try
             {
-                // Obter o ID do tipo de artigo selecionado
-                int tipoId = (int)cmbTipo.SelectedIndex + 1;
+				if (cmbTipo.SelectedValue == null)
+				{
+					MessageBox.Show("Selecione um tipo.");
+					return;
+				}
+
+				// Obter o ID do tipo de artigo selecionado
+				int tipoId = (int)cmbTipo.SelectedValue;
                
 
                 // Se existe uma linha selecionada → atualizar
@@ -112,7 +122,7 @@ namespace Projeto_iShopping.Views
             catch (Exception ex)
             {
                 
-                MessageBox.Show("Erro ao guardar o artigo: ");
+                MessageBox.Show("Erro ao guardar o artigo: " + ex.Message);
             }
         }
 
@@ -120,14 +130,10 @@ namespace Projeto_iShopping.Views
         {
             if (dvgArtigos.SelectedRows.Count > 0)
             {
-                // 1. Obter a linha selecionada
-                DataGridViewRow linha = dvgArtigos.SelectedRows[0];
+				var artigoSelecionado = (Artigo)dvgArtigos.SelectedRows[0].DataBoundItem;
 
-                // 2. Obter o objeto Artigo associado à linha
-                Artigo artigoSelecionado = (Artigo)linha.DataBoundItem;
-
-                // 3. Eliminar pelo ID
-                ArtigoController.Eliminar(artigoSelecionado.Id);
+				// 3. Eliminar pelo ID
+				ArtigoController.Eliminar(artigoSelecionado.Id);
 
                 // 4. Atualizar a grelha
                 dvgArtigos.DataSource = ArtigoController.ListarTodos();
