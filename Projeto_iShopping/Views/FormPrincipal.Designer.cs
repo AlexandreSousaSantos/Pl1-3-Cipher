@@ -45,39 +45,36 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.label1.Location = new System.Drawing.Point(60, 128);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(45, 104);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 29);
+            this.label1.Size = new System.Drawing.Size(169, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Compras em Aberto";
             // 
             // DGV_Historico_de_Orcamentos
             // 
             this.DGV_Historico_de_Orcamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Historico_de_Orcamentos.Location = new System.Drawing.Point(65, 176);
-            this.DGV_Historico_de_Orcamentos.Margin = new System.Windows.Forms.Padding(4);
+            this.DGV_Historico_de_Orcamentos.Location = new System.Drawing.Point(49, 143);
             this.DGV_Historico_de_Orcamentos.Name = "DGV_Historico_de_Orcamentos";
             this.DGV_Historico_de_Orcamentos.RowHeadersWidth = 51;
-            this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(907, 265);
+            this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(680, 215);
             this.DGV_Historico_de_Orcamentos.TabIndex = 1;
             // 
             // btModoCompra
             // 
-            this.btModoCompra.Location = new System.Drawing.Point(65, 478);
-            this.btModoCompra.Margin = new System.Windows.Forms.Padding(4);
+            this.btModoCompra.Location = new System.Drawing.Point(49, 388);
             this.btModoCompra.Name = "btModoCompra";
-            this.btModoCompra.Size = new System.Drawing.Size(139, 42);
+            this.btModoCompra.Size = new System.Drawing.Size(104, 34);
             this.btModoCompra.TabIndex = 2;
             this.btModoCompra.Text = "Modo Compra";
             this.btModoCompra.UseVisualStyleBackColor = true;
+            this.btModoCompra.Click += new System.EventHandler(this.btModoCompra_Click);
             // 
             // BTtiposdeartigos
             // 
-            this.BTtiposdeartigos.Location = new System.Drawing.Point(16, 15);
-            this.BTtiposdeartigos.Margin = new System.Windows.Forms.Padding(4);
+            this.BTtiposdeartigos.Location = new System.Drawing.Point(12, 12);
             this.BTtiposdeartigos.Name = "BTtiposdeartigos";
-            this.BTtiposdeartigos.Size = new System.Drawing.Size(128, 30);
+            this.BTtiposdeartigos.Size = new System.Drawing.Size(96, 24);
             this.BTtiposdeartigos.TabIndex = 3;
             this.BTtiposdeartigos.Text = "Tipos de Artigos";
             this.BTtiposdeartigos.UseVisualStyleBackColor = true;
@@ -85,10 +82,9 @@
             // 
             // BTartigos
             // 
-            this.BTartigos.Location = new System.Drawing.Point(16, 52);
-            this.BTartigos.Margin = new System.Windows.Forms.Padding(4);
+            this.BTartigos.Location = new System.Drawing.Point(12, 42);
             this.BTartigos.Name = "BTartigos";
-            this.BTartigos.Size = new System.Drawing.Size(128, 30);
+            this.BTartigos.Size = new System.Drawing.Size(96, 24);
             this.BTartigos.TabIndex = 4;
             this.BTartigos.Text = "Artigos";
             this.BTartigos.UseVisualStyleBackColor = true;
@@ -96,10 +92,9 @@
             // 
             // BTplaneamento
             // 
-            this.BTplaneamento.Location = new System.Drawing.Point(152, 15);
-            this.BTplaneamento.Margin = new System.Windows.Forms.Padding(4);
+            this.BTplaneamento.Location = new System.Drawing.Point(114, 12);
             this.BTplaneamento.Name = "BTplaneamento";
-            this.BTplaneamento.Size = new System.Drawing.Size(148, 30);
+            this.BTplaneamento.Size = new System.Drawing.Size(111, 24);
             this.BTplaneamento.TabIndex = 7;
             this.BTplaneamento.Text = "Planeamento";
             this.BTplaneamento.UseVisualStyleBackColor = true;
@@ -107,10 +102,9 @@
             // 
             // BTestatisticas
             // 
-            this.BTestatisticas.Location = new System.Drawing.Point(308, 15);
-            this.BTestatisticas.Margin = new System.Windows.Forms.Padding(4);
+            this.BTestatisticas.Location = new System.Drawing.Point(231, 12);
             this.BTestatisticas.Name = "BTestatisticas";
-            this.BTestatisticas.Size = new System.Drawing.Size(115, 30);
+            this.BTestatisticas.Size = new System.Drawing.Size(86, 24);
             this.BTestatisticas.TabIndex = 8;
             this.BTestatisticas.Text = "Estatísticas";
             this.BTestatisticas.UseVisualStyleBackColor = true;
@@ -118,10 +112,9 @@
             // 
             // BTexportarcsv
             // 
-            this.BTexportarcsv.Location = new System.Drawing.Point(431, 15);
-            this.BTexportarcsv.Margin = new System.Windows.Forms.Padding(4);
+            this.BTexportarcsv.Location = new System.Drawing.Point(323, 12);
             this.BTexportarcsv.Name = "BTexportarcsv";
-            this.BTexportarcsv.Size = new System.Drawing.Size(115, 30);
+            this.BTexportarcsv.Size = new System.Drawing.Size(86, 24);
             this.BTexportarcsv.TabIndex = 9;
             this.BTexportarcsv.Text = "Exportar CSV";
             this.BTexportarcsv.UseVisualStyleBackColor = true;
@@ -129,10 +122,9 @@
             // 
             // BTSair
             // 
-            this.BTSair.Location = new System.Drawing.Point(553, 15);
-            this.BTSair.Margin = new System.Windows.Forms.Padding(4);
+            this.BTSair.Location = new System.Drawing.Point(415, 12);
             this.BTSair.Name = "BTSair";
-            this.BTSair.Size = new System.Drawing.Size(72, 30);
+            this.BTSair.Size = new System.Drawing.Size(54, 24);
             this.BTSair.TabIndex = 10;
             this.BTSair.Text = "Sair";
             this.BTSair.UseVisualStyleBackColor = true;
@@ -140,10 +132,9 @@
             // 
             // btnEditarCompra
             // 
-            this.btnEditarCompra.Location = new System.Drawing.Point(152, 52);
-            this.btnEditarCompra.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditarCompra.Location = new System.Drawing.Point(114, 42);
             this.btnEditarCompra.Name = "btnEditarCompra";
-            this.btnEditarCompra.Size = new System.Drawing.Size(170, 30);
+            this.btnEditarCompra.Size = new System.Drawing.Size(128, 24);
             this.btnEditarCompra.TabIndex = 11;
             this.btnEditarCompra.Text = "Criar/Editar Compra";
             this.btnEditarCompra.UseVisualStyleBackColor = true;
@@ -151,9 +142,9 @@
             // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnEditarCompra);
             this.Controls.Add(this.BTSair);
             this.Controls.Add(this.BTexportarcsv);
@@ -164,7 +155,6 @@
             this.Controls.Add(this.btModoCompra);
             this.Controls.Add(this.DGV_Historico_de_Orcamentos);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPrincipal";
             this.Text = "FormPrincipal";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);

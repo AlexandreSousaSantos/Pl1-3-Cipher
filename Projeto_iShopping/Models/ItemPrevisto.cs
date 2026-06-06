@@ -9,6 +9,7 @@ namespace Projeto_iShopping.Models
     public class ItemPrevisto : ItemCompra
     {
 
-       public float quantidadeAdquirida { get; set; }
+        public bool Adquirido { get; set; }
+        public float quantidadeAdquirida { get; set; }
     }
 }

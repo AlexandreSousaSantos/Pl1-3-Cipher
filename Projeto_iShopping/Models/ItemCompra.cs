@@ -34,6 +34,8 @@ namespace Projeto_iShopping.Models
         public Utilizador CriadoPor { get; set; }
         public string Observacoes { get; set; }
 
+        public DateTime? DataAlteracao { get; set; }
+
         public decimal QuantidadeNPrevista
         {
             get

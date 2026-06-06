@@ -112,6 +112,18 @@ namespace Projeto_iShopping.Controller
                 MessageBox.Show("Erro ao eliminar compra: " + ex.Message);
                 return;
             }
+
+        }
+        public static Compra ObterPorId(int id)
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                return db.Compras
+                    .Include("CriadoPor")
+                    .Include("AtualizadoPor")
+                    .Include("FechadoPor")
+                    .FirstOrDefault(c => c.Id == id);
+            }
         }
     }
 }

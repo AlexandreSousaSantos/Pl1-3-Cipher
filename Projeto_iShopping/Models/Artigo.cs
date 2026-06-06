@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto_iShopping.Models
@@ -12,5 +13,10 @@ namespace Projeto_iShopping.Models
 
         [ForeignKey("TipoArtigoId")]
         public virtual TipoArtigo TipoArtigo { get; set; }
+
+        public static explicit operator Artigo(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

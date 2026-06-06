@@ -36,6 +36,45 @@ namespace Projeto_iShopping.Controller
                 context.SaveChanges();
             }
         }
-        //Não percebi!
+        //Listar itens previstos
+        public static List<ItemPrevisto> ListarPrevistosDeCompra(int compraId)
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                return db.ItensPrevisto
+                    .Include("Artigo")
+                    .Where(i => i.CompraId == compraId)
+                    .ToList();
+            }
+        }
+        public static List<ItemNaoPrevisto> ListarNaoPrevistosDeCompra(int compraId)
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                return db.ItensNaoPrevisto
+                    .Include("Artigo")
+                    .Where(i => i.CompraId == compraId)
+                    .ToList();
+            }
+        }
+
+        public static void MarcarComoAdquirido(int itemId, decimal qtAdquirida, decimal precoUnitario)
+        {
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                ItemPrevisto item = db.ItensPrevisto.Find(itemId);
+                if (item == null)
+                {
+                    throw new Exception("Item não encontrado.");
+                }
+
+                item.Adquirido = true;
+                item.QuantidadeAdquirida = qtAdquirida;
+                item.PrecoUnitario = precoUnitario;
+                item.DataAlteracao = DateTime.Now;
+                db.SaveChanges();
+            }
+        }
+
     }
 }

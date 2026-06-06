@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_iShopping.Models
 {
-    internal class ItemNaoPrevisto : ItemCompra
+    public class ItemNaoPrevisto : ItemCompra
     {
         public new string Observacoes { get; set; }
     }

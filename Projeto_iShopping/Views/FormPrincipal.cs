@@ -87,5 +87,11 @@ namespace Projeto_iShopping.Views
         {
 
         }
+
+        private void btModoCompra_Click(object sender, EventArgs e)
+        {
+            FormModoCompra frm = new FormModoCompra(1); 
+            frm.ShowDialog();
+        }
     }
 }
