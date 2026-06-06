@@ -48,10 +48,12 @@ namespace Projeto_iShopping.Views
              
             try
             {
+
                 List<Artigo> artigos = ArtigoController.ListarTodos();
                 dvgArtigos.DataSource = artigos;
                 MessageBox.Show(artigos.First().ToString());
 
+                
             }
             catch (Exception err)
             {
