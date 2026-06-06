@@ -42,7 +42,7 @@
             // 
             this.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompras.Location = new System.Drawing.Point(20, 122);
-            this.dgvCompras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCompras.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCompras.Name = "dgvCompras";
             this.dgvCompras.RowHeadersWidth = 51;
             this.dgvCompras.Size = new System.Drawing.Size(1016, 352);
@@ -62,32 +62,35 @@
             // btnNovaCompra
             // 
             this.btnNovaCompra.Location = new System.Drawing.Point(20, 498);
-            this.btnNovaCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNovaCompra.Margin = new System.Windows.Forms.Padding(4);
             this.btnNovaCompra.Name = "btnNovaCompra";
             this.btnNovaCompra.Size = new System.Drawing.Size(139, 28);
             this.btnNovaCompra.TabIndex = 2;
             this.btnNovaCompra.Text = "Nova Compra";
             this.btnNovaCompra.UseVisualStyleBackColor = true;
+            this.btnNovaCompra.Click += new System.EventHandler(this.btnNovaCompra_Click);
             // 
             // btnEditar
             // 
             this.btnEditar.Location = new System.Drawing.Point(180, 498);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(139, 28);
             this.btnEditar.TabIndex = 3;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(344, 498);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(139, 28);
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // cmbEstado
             // 
@@ -96,6 +99,7 @@
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(162, 24);
             this.cmbEstado.TabIndex = 5;
+            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -118,9 +122,10 @@
             this.Controls.Add(this.btnNovaCompra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvCompras);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPlaneamentoCompra";
             this.Text = "FormsPlaneamentoCompra";
+            this.Load += new System.EventHandler(this.FormPlaneamentoCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
