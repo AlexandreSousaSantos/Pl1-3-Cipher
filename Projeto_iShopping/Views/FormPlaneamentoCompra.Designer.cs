@@ -28,72 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DGV_Historico_de_Orcamentos = new System.Windows.Forms.DataGridView();
+            this.dgvCompras = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).BeginInit();
+            this.btnNovaCompra = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).BeginInit();
             this.SuspendLayout();
             // 
-            // DGV_Historico_de_Orcamentos
+            // dgvCompras
             // 
-            this.DGV_Historico_de_Orcamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_Historico_de_Orcamentos.Location = new System.Drawing.Point(15, 48);
-            this.DGV_Historico_de_Orcamentos.Name = "DGV_Historico_de_Orcamentos";
-            this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(762, 337);
-            this.DGV_Historico_de_Orcamentos.TabIndex = 0;
+            this.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCompras.Location = new System.Drawing.Point(20, 122);
+            this.dgvCompras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCompras.Name = "dgvCompras";
+            this.dgvCompras.RowHeadersWidth = 51;
+            this.dgvCompras.Size = new System.Drawing.Size(1016, 352);
+            this.dgvCompras.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label1.Location = new System.Drawing.Point(25, 16);
+            this.label1.Location = new System.Drawing.Point(33, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 20);
+            this.label1.Size = new System.Drawing.Size(260, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Planeamento de Compras";
             // 
-            // button1
+            // btnNovaCompra
             // 
-            this.button1.Location = new System.Drawing.Point(15, 405);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Nova Compra";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNovaCompra.Location = new System.Drawing.Point(20, 498);
+            this.btnNovaCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNovaCompra.Name = "btnNovaCompra";
+            this.btnNovaCompra.Size = new System.Drawing.Size(139, 28);
+            this.btnNovaCompra.TabIndex = 2;
+            this.btnNovaCompra.Text = "Nova Compra";
+            this.btnNovaCompra.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnEditar
             // 
-            this.button2.Location = new System.Drawing.Point(135, 405);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Editar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditar.Location = new System.Drawing.Point(180, 498);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(139, 28);
+            this.btnEditar.TabIndex = 3;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnEliminar
             // 
-            this.button3.Location = new System.Drawing.Point(258, 405);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(104, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Eleminar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEliminar.Location = new System.Drawing.Point(344, 498);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(139, 28);
+            this.btnEliminar.TabIndex = 4;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // FormsPlaneamentoCompra
+            // cmbEstado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(157, 71);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(162, 24);
+            this.cmbEstado.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 16);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Filtrar por estado:";
+            // 
+            // FormPlaneamentoCompra
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbEstado);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnNovaCompra);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.DGV_Historico_de_Orcamentos);
-            this.Name = "FormsPlaneamentoCompra";
+            this.Controls.Add(this.dgvCompras);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "FormPlaneamentoCompra";
             this.Text = "FormsPlaneamentoCompra";
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Historico_de_Orcamentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,10 +129,12 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView DGV_Historico_de_Orcamentos;
+        private System.Windows.Forms.DataGridView dgvCompras;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnNovaCompra;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.Label label2;
     }
 }
