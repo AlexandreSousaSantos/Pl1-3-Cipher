@@ -20,7 +20,13 @@ namespace Projeto_iShopping.Models
         public int? AlteradoPorId { get; set; }
 
        [ForeignKey("AlteradoPorId")]
-        public virtual Utilizador AlteradoPor { get; set; } 
+        public virtual Utilizador AlteradoPor { get; set; }
 
+        public int? OrcamentoId { get; set; }
+
+        [ForeignKey("OrcamentoId")]
+        public virtual Orcamento Orcamento { get; set; }
+
+        public decimal? CustoTotal { get; set; }
     }
 }

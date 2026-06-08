@@ -10,6 +10,7 @@ namespace Projeto_iShopping.Models
         public string Mes { get; set; }
 
         public decimal ValorMaximo { get; set; }
+        public decimal CustoGasto { get; set; } = 0;
         public int? CriadoPorId { get; set; }
 
         [ForeignKey("CriadoPorId")]

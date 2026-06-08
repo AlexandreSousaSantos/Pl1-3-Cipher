@@ -1,4 +1,5 @@
 ﻿using Projeto_iShopping.Models;
+using Projeto_iShopping.Controller;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,27 +79,18 @@ namespace Projeto_iShopping.Views
         private void BTexportarcsv_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Ficheiros CSV (.csv)|.csv";
+            sfd.Filter = "Ficheiros CSV (.csv)|*.csv";
             sfd.Title = "Guardar ficheiro CSV";
-            sfd.FileName = "filmes.csv";
+            sfd.FileName = "Compras_Fechadas.csv";
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                ExportarCsv(sfd.FileName);
-                MessageBox.Show("Ficheiro CSV exportado com sucesso.");
+                CompraController.ExportarComprasParaCsv(sfd.FileName);
             }
         }
 
-        private void ExportarCsv(string filePath)
-        {
-            /*StringBuilder csvContent = new StringBuilder();
-            csvContent.AppendLine("ID,Nome,Preço");
-            // Exemplo de dados a exportar
-            csvContent.AppendLine("1,Produto A,10.99");
-            csvContent.AppendLine("2,Produto B,15.49");
-            csvContent.AppendLine("3,Produto C,7.25");
-            System.IO.File.WriteAllText(filePath, csvContent.ToString());*/
-        }
+        
+        
 
         private void BTSair_Click(object sender, EventArgs e)
         {

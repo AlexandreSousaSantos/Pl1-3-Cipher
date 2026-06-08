@@ -28,11 +28,12 @@ namespace Projeto_iShopping.Controller
             }
         }
         //Adicionar um novo item de compra não previsto
-        public static void AdicionarItemCompraNaoPrevisto(ItemCompra itemNaoPrevisto)
+        public static void AdicionarItemCompraNaoPrevisto(ItemNaoPrevisto itemNaoPrevisto)
         {
             using (var context = new iShoppingContext())
             {
-                context.ItemCompra.Add(itemNaoPrevisto);
+                itemNaoPrevisto.DataCriacao = DateTime.Now;
+                context.ItensNaoPrevisto.Add(itemNaoPrevisto);
                 context.SaveChanges();
             }
         }

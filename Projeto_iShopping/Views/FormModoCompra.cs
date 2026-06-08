@@ -12,10 +12,12 @@ using System.Windows.Forms;
 
 namespace Projeto_iShopping.Views
 {
+    
     public partial class FormModoCompra : Form
     {
         private int _compraId;
         private object txtObservacoes;
+        private Compra compra;
 
         public FormModoCompra(int compraId)
         {
@@ -23,7 +25,7 @@ namespace Projeto_iShopping.Views
             InitializeComponent();
             _compraId = compraId;
             
-            Compra compra = CompraController.ObterPorId(_compraId);
+             compra = CompraController.ObterPorId(_compraId);
             if (compra == null)
             {
                 MessageBox.Show("Erro");
@@ -47,8 +49,10 @@ namespace Projeto_iShopping.Views
             List<Artigo> artigos = ArtigoController.ListarTodos();
             foreach (var artigo in artigos)
             {
-                cmbArtigo.Items.Add(artigo.NomeArtigo);
+                cmbArtigo.Items.Add(artigo);
             }
+            cmbArtigo.DisplayMember = "NomeArtigo";
+            cmbArtigo.ValueMember = "Id";
         }
 
         
@@ -66,6 +70,7 @@ namespace Projeto_iShopping.Views
             DgvModocompra.Columns.Add("colQtA", "Qt Adquirida");
             DgvModocompra.Columns.Add("colPreco", "Preço Unit.");
             DgvModocompra.Columns.Add("colAdq", "Adquirido");
+            DgvModocompra.Columns.Add("colObs", "Observações");
             DgvModocompra.Columns["colId"].Visible = false;
 
 
@@ -74,7 +79,7 @@ namespace Projeto_iShopping.Views
             foreach (ItemPrevisto i in previsto)
             {
                 string art = (i.Artigo != null) ? i.Artigo.NomeArtigo : "";
-                DgvModocompra.Rows.Add(i.Id, "Previsto", art, i.QuantidadePrevista, i.QuantidadeAdquirida, i.PrecoUnitario);
+                DgvModocompra.Rows.Add(i.Id, "Previsto", art, i.QuantidadePrevista, i.QuantidadeAdquirida, i.PrecoUnitario, "", "");
             }
 
             //itens não previstos
@@ -82,9 +87,7 @@ namespace Projeto_iShopping.Views
             foreach (ItemNaoPrevisto i in nprevisto)
             {
                 string art = (i.Artigo != null) ? i.Artigo.NomeArtigo : "";
-                DgvModocompra.Rows.Add(i.Id, "Não Previsto", art, i.QuantidadePrevista, i.Observacoes);
-
-
+                DgvModocompra.Rows.Add(i.Id, "Não Previsto", art, 0, i.QuantidadeAdquirida, i.PrecoUnitario, "", i.Observacoes);
             }
         }
 
@@ -124,8 +127,19 @@ namespace Projeto_iShopping.Views
 
             try
             {
-                //ItemCompraController.AdicionarItemCompraNaoPrevisto(_compraId, art.Id, Convert.ToInt32(NudQtAdquirida.Value),);
+                ItemNaoPrevisto novoItem = new ItemNaoPrevisto
+                {
+                    CompraId = _compraId,
+                    ArtigoId = art.Id,
+                    QuantidadeAdquirida = Convert.ToDecimal(NudQt.Value),
+                    PrecoUnitario = NudPreço.Value,
+                    Observacoes = txtObservacoes?.ToString()
+                };
+                ItemCompraController.AdicionarItemCompraNaoPrevisto(novoItem);
                 CarregarItens();
+                NudQt.Value = 0;
+                NudPreço.Value = 0;
+                cmbArtigo.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -135,7 +149,24 @@ namespace Projeto_iShopping.Views
 
         private void btnFecharCompra_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (Sessao.UtilizadorAtual == null)
+            {
+                MessageBox.Show("Erro: Utilizador não identificado.");
+                return;
+            }
+
+            if (MessageBox.Show("Tem a certeza que deseja fechar esta compra?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    CompraController.FecharCompra(_compraId, Sessao.UtilizadorAtual.Id);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao fechar compra: " + ex.Message);
+                }
+            }
         }
 
         
