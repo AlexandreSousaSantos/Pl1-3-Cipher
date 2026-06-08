@@ -57,128 +57,107 @@ A aplicação foi feita para diminuir a falta de controlo financeiro familiar e 
 
 ---
 
-# 🧩 Funcionalidades do Sistema (Formulários Obrigatórios)
+## 🧩 Funcionalidades Implementadas
 
-A aplicação **iShopping** foi desenvolvida em **Windows Forms (C#)** e implementa nove formulários obrigatórios definidos no enunciado:
+### Formulário de Login
 
-## 🔐 a) Formulário de Login
-Primeira janela da aplicação.
+- Autenticação com Username e Password;
+- Validação de credenciais;
+- Armazenamento do ID do utilizador durante a execução da aplicação.
 
-- Identificação do utilizador através de Username e Password
-- Validação de credenciais
-- O **Id do utilizador autenticado é guardado em memória durante toda a execução da aplicação**
+### Formulário Principal
 
----
+- Acesso às restantes funcionalidades através do menu;
+- Visualização das compras em aberto;
+- Acesso ao Modo Compra.
 
-## 🏠 b) Formulário Principal
-Janela principal de navegação.
+### Gestão de Tipos de Artigo
 
-- Menu de acesso a todos os módulos
-- Lista de **compras em aberto**
-- Acesso direto ao **Modo Compra**
+- Visualização dos tipos de artigo;
+- Criação de novos tipos;
+- Edição de tipos existentes;
+- Remoção de tipos de artigo.
 
----
+### Gestão de Artigos
 
-## 🏷️ c) Gestão de Tipos de Artigo
-Gestão das categorias de artigos.
+- Visualização de artigos;
+- Filtragem por tipo de artigo;
+- CRUD completo dos artigos.
 
-- Visualização de todos os tipos de artigo
-- CRUD completo:
-  - Criar
-  - Ler
-  - Atualizar
-  - Eliminar
+### Gestão de Orçamentos
 
----
+- Visualização dos orçamentos existentes;
+- Criação de novos orçamentos;
+- Alteração de orçamentos;
+- Remoção de orçamentos.
 
-## 📦 d) Gestão de Artigos
-Gestão do catálogo de produtos.
+### Planeamento de Compras
 
-- Visualização de artigos
-- Filtro por tipo de artigo ou todos
-- CRUD completo
+- Visualização de todas as compras;
+- Filtragem por estado;
+- Criação de novas compras;
+- Alteração de compras ainda abertas.
 
----
+### Criação e Alteração de Compras Planeadas
 
-## 💰 e) Gestão de Orçamentos
-Gestão do orçamento mensal.
+- Edição dos dados da compra;
+- Gestão dos itens previstos;
+- Definição das quantidades previstas;
+- Modo apenas leitura para compras fechadas.
 
-- Visualização de todos os orçamentos
-- CRUD completo
-- Associação ao utilizador que cria e altera o registo
+### Modo Compra
 
----
+- Registo dos artigos adquiridos;
+- Registo da quantidade adquirida;
+- Registo do preço unitário;
+- Adição de artigos não previstos;
+- Fecho da compra.
 
-## 📝 f) Planeamento de Compras
-Gestão das listas de compras.
+### Estatísticas
 
-- Visualização de compras (abertas e fechadas)
-- Filtro por estado
-- Criação de novas compras
-- Edição de compras ainda não fechadas
-- Acesso ao formulário de criação/edição
+#### Estatísticas Gerais
 
----
+- Listagem mensal de orçamentos;
+- Total gasto por mês;
+- Diferença entre orçamento e despesas;
+- Percentagem de artigos previstos e não previstos.
 
-## 🧾 g) Criação/Alteração de Compra Planeada
-Gestão detalhada de cada compra.
+#### Apoio à Decisão
 
-- Visualização e edição de dados da compra
-- Gestão de itens da lista:
-  - Itens previstos
-  - Quantidades
-- Inserção de novos itens
-- Se a compra estiver fechada:
-  - Apenas leitura
+- Sugestão de orçamento para o mês seguinte;
+- Sugestão de lista de compras baseada em compras anteriores.
 
----
+### Exportação CSV
 
-## 🛒 h) Modo Compra
-Execução prática da compra.
-
-- Registo de itens comprados
-- Inserção de:
-  - Quantidade
-  - Preço unitário
-- Possibilidade de adicionar itens não previstos
-- Atualização automática do orçamento
-- Fecho da compra com data/hora e utilizador responsável
+- Exportação de compras fechadas;
+- Ficheiro CSV separado por ponto e vírgula.
 
 ---
 
-## 📊 i) Estatísticas
-Módulo de análise e apoio à decisão.
+## 🏗️ Arquitetura e Engenharia de Software
+O sistema foi desenvolvido de acordo com os princípios da programação orientada a objetos e também organizado conforme a arquitetura MVC (Model-View-Controller).
 
-Organizado em separadores:
+A persistência dos dados é feita através do SQL Server, que utiliza o Entity Framework como uma camada de acesso aos dados.
 
-### 📈 Estatísticas Gerais
-- Listagem mensal de:
-  - Orçamento
-  - Total gasto
-  - Diferença entre ambos
-
-- Percentagem de:
-  - Artigos previstos
-  - Artigos não previstos
-
-### 🧠 Apoio à Decisão
-- Sugestão de orçamento para o próximo mês
-- Sugestão de lista de compras com base em padrões históricos (por semana do mês)
+O modelo de dados foi representado através de um diagrama de classes UML, que tem as entidades necessárias para a gestão de utilizadores, artigos, orçamentos e compras, o que permite uma estrutura organizada, escalável e que tenha pelo menos uma fácil manutenção.
 
 ---
 
-## 📄 Exportação CSV (Funcionalidade Extra do Sistema)
+## 🔄 Metodologia Scrum
+O desenvolvimento do projeto seguiu a metedologia Scrum.
 
-- Exportação de compras fechadas
-- Formato CSV separado por ponto e vírgula
-- Inclui:
-  - NomeCompra
-  - DataCriacao
-  - DataFechada
-  - NomeArtigo
-  - Quantidades
-  - Preços
-  - Previstos / Não previstos
+### Ferramentas Utilizadas
+
+- Jira
+- Git
+- GitHub
+
+### Eventos Scrum
+
+- Sprint Planning
+- Weekly Scrum
+- Sprint Review
+- Sprint Retrospective
 
 ---
 
@@ -193,7 +172,7 @@ Organizado em separadores:
 * Fazer a secção de "Introdução" do relatório de MDS.
 
 #### Sprint 2
- em:
+Foi feito:
 * Fazer a continuação da Introdução do relatório de MDS.
 * Tornar realidade as Users Stories:
   * Autenticação do Utilizador;
@@ -226,5 +205,7 @@ Focada em:
 
 ---
 
-## Arquitetura e Engenharia de Software
-O sistema assenta em **8 tabelas estruturadas com herança e composição** no Diagrama de Classes UML.
+## 🧩 Diagrama de Classes
+ colocar imagem aqui!!
+
+ falta captura de ecrã, estrutura do projeto, projeto académico
