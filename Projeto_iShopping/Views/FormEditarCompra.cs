@@ -60,6 +60,7 @@ namespace Projeto_iShopping.Views
             {
                 // Se estamos em modo de edição, carregamos os dados da compra existente
                 CarregaDadosCompra();
+                CarregarDadosCompra();
                 AtualizarGrelha();
             }
             else
@@ -286,5 +287,42 @@ namespace Projeto_iShopping.Views
 
             AtualizarGrelha();
         }
+
+        private void btnEditarArtigo_Click(object sender, EventArgs e)
+        {
+            //Verifica se há uma linha selecionada
+            if (dgvEditar.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleciona um item para editar.");
+                return;
+            }
+
+            // Verifica se foi selecionado um novo artigo no comboBox
+            if (comboBoxArtigos.SelectedValue == null)
+            {
+                MessageBox.Show("Seleciona o artigo que queres usar.");
+                return;
+            }
+            
+            //Obtem o ID do item de compra da linha selecionada
+            int itemId = (int)dgvEditar.SelectedRows[0].Cells["Id"].Value;
+            //Obteem o novo artigo selecionado no comboBox
+            int novoArtigoId = Convert.ToInt32(comboBoxArtigos.SelectedValue);
+            //Atualizar na base de dados
+            using (iShoppingContext db = new iShoppingContext())
+            {
+                var item = db.ItemCompra.Find(itemId);
+                if (item == null)
+                {
+                    MessageBox.Show("Item não encontrado.");
+                    return;
+                }
+                item.ArtigoId = novoArtigoId; // Troca o artigo
+                db.SaveChanges();
+            }
+            MessageBox.Show("Artigo atualizado com sucesso.");
+            AtualizarGrelha(); // Atualiza a grelha para mostrar a alteração
+        }
     }
-}
+    }
+
