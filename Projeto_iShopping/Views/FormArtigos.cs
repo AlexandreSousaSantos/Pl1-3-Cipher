@@ -51,7 +51,7 @@ namespace Projeto_iShopping.Views
 					return;
 				}
 
-				MessageBox.Show(artigos[0].NomeArtigo);
+				
 			}
 			catch (Exception err)
 			{
@@ -110,27 +110,30 @@ namespace Projeto_iShopping.Views
                     MessageBox.Show("Artigo criado com sucesso!");
                 }
 
-                // Atualizar a grelha depois de guardar
-                dvgArtigos.DataSource = ArtigoController.ListarTodos();
+                CarregarTipos();
+                CarregarArtigos();
+
             }
             catch (Exception ex)
             {
                 
                 MessageBox.Show("Erro ao guardar o artigo: " + ex.Message);
             }
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dvgArtigos.SelectedRows.Count > 0)
             {
-				var artigoSelecionado = (Artigo)dvgArtigos.SelectedRows[0].DataBoundItem;
+                int id = Convert.ToInt32(dvgArtigos.SelectedRows[0].Cells["Id"].Value);
+        
 
-				// 3. Eliminar pelo ID
-				ArtigoController.Eliminar(artigoSelecionado.Id);
+                // 3. Eliminar pelo ID
+                ArtigoController.Eliminar(id);
 
                 // 4. Atualizar a grelha
-                dvgArtigos.DataSource = ArtigoController.ListarTodos();
+                CarregarArtigos();
 
                 MessageBox.Show("Artigo eliminado com sucesso!");
             }

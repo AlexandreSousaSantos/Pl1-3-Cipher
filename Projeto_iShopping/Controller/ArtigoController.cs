@@ -84,6 +84,11 @@ namespace Projeto_iShopping.Controller
                 {
                     throw new Exception("Artigo não encontrado.");
                 }
+                var itens = db.ItemCompra.Where(i => i.ArtigoId == id).ToList();
+                foreach (var item in itens)
+                {
+                    db.ItemCompra.Remove(item);
+                }
                 db.Artigos.Remove(artigo);
                 db.SaveChanges();
             }

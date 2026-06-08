@@ -13,5 +13,9 @@ namespace Projeto_iShopping.Models
         {
             throw new NotImplementedException();
         }
+        public override string ToString()
+        {
+            return Username;
+        }
     }
 }

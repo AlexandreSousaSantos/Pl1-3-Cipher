@@ -18,12 +18,26 @@ namespace Projeto_iShopping.Views
         {
             InitializeComponent();
         }
-
-        private bool ValidarDados(out int mes, out float ValorMaximo)
+        private void FormOrcamento_Load(object sender, EventArgs e)
         {
-            mes = 0;
+            AtualizarGrelha();
+        }
+
+        private bool ValidarDados( out decimal ValorMaximo)
+        {
+            string mesString = tbMes.Text.Split('/')[0];
+            string anoString = tbMes.Text.Split('/')[1];
+            if(mesString == null || anoString == null || tbMes.Text.Split('/').Length != 2)
+            {
+                MessageBox.Show("Por favor, insira um mês e ano válidos no formato MM/yyyy.");
+                
+                ValorMaximo = 0;
+                return false;
+            }
+           int mes = 0;
+
             ValorMaximo = 0;
-            if (!int.TryParse(tbMes.Text, out mes) || mes < 1 || mes > 12)
+            if (!int.TryParse(mesString, out mes) || mes < 1 || mes > 12)
             {
                 MessageBox.Show("Por favor, insira um mês válido (1-12).");
                 return false;
@@ -35,7 +49,7 @@ namespace Projeto_iShopping.Views
                 return false;
             }
 
-            if (!float.TryParse(TBvalorMaximo.Text, out ValorMaximo))
+            if (!decimal.TryParse(TBvalorMaximo.Text, out ValorMaximo))
             {
                 MessageBox.Show("Por favor, insira um valor máximo válido.");
                 return false;
@@ -51,21 +65,19 @@ namespace Projeto_iShopping.Views
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            int mes;
-            float ValorMaximo;
 
-            if (!ValidarDados(out mes, out ValorMaximo))
+            decimal ValorMaximo = 0;
+
+            if (!ValidarDados(out ValorMaximo))
             {
                 return;
             }
 
-            // Formatar o mês como MM/yyyy
-            string mesFormatado = mes.ToString("D2") + "/" + DateTime.Now.Year.ToString();
-
+           
             int Id_utilizador = Sessao.UtilizadorAtual.Id;
 
             // Criar ou atualizar o orçamento
-            OrcamentoController.CriarOuAtualizar(mesFormatado, (decimal)ValorMaximo, Id_utilizador);
+            OrcamentoController.CriarOuAtualizar(tbMes.Text,ValorMaximo, Id_utilizador);
 
             MessageBox.Show("Orçamento adicionado/atualizado com sucesso!");
 
@@ -146,7 +158,15 @@ namespace Projeto_iShopping.Views
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            Orcamento orcamentoAtual = OrcamentoController.ObterMesAtual();
+            decimal ValorMaximo = 0;
+
+            if (!ValidarDados (out  ValorMaximo))
+            {
+                return;
+            }
+
+
+            Orcamento orcamentoAtual = OrcamentoController.ObterporMes(tbMes.Text);
             if (orcamentoAtual == null)
             {
                 MessageBox.Show("Nenhum orçamento encontrado para o mês atual.");
@@ -154,7 +174,7 @@ namespace Projeto_iShopping.Views
             }
 
             int Id_utilizador = Sessao.UtilizadorAtual.Id;
-            OrcamentoController.CriarOuAtualizar(orcamentoAtual.Mes, orcamentoAtual.ValorMaximo, Id_utilizador);
+            OrcamentoController.CriarOuAtualizar(orcamentoAtual.Mes,ValorMaximo, Id_utilizador);
 
             LimparCampos();
             AtualizarGrelha();

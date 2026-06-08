@@ -19,5 +19,8 @@ namespace Projeto_iShopping.Models
         public string FechadaPorId { get; set; }
         public int? AlteradoPorId { get; set; }
 
+       [ForeignKey("AlteradoPorId")]
+        public virtual Utilizador AlteradoPor { get; set; } 
+
     }
 }

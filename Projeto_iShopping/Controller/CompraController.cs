@@ -103,6 +103,13 @@ namespace Projeto_iShopping.Controller
                         MessageBox.Show("Não é possível eliminar uma compra fechada.");
                         return;
                     }
+                    var itens = db.ItemCompra.Where(i => i.CompraId == compraId).ToList();
+                    foreach (var item in itens)
+                    {
+                        db.ItemCompra.Remove(item);
+                    }
+                    db.SaveChanges();
+
                     db.Compras.Remove(compra);
                     db.SaveChanges();
                 }
@@ -120,8 +127,7 @@ namespace Projeto_iShopping.Controller
             {
                 return db.Compras
                     .Include("CriadoPor")
-                    .Include("AtualizadoPor")
-                    .Include("FechadoPor")
+                    .Include("AlteradoPor")
                     .FirstOrDefault(c => c.Id == id);
             }
         }

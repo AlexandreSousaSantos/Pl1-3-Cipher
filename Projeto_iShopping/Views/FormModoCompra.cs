@@ -19,8 +19,22 @@ namespace Projeto_iShopping.Views
 
         public FormModoCompra(int compraId)
         {
+
             InitializeComponent();
             _compraId = compraId;
+            
+            Compra compra = CompraController.ObterPorId(_compraId);
+            if (compra == null)
+            {
+                MessageBox.Show("Erro");
+                this.Close();
+                return;
+
+            }
+            CarregarArtigos();
+
+            CarregarItens();
+
         }
 
         private void NudQtAdquirida_ValueChanged(object sender, EventArgs e)
@@ -37,20 +51,7 @@ namespace Projeto_iShopping.Views
             }
         }
 
-        private void FormModoCompra_Load(object sender, EventArgs e)
-        {
-            Compra compra = CompraController.ObterPorId(_compraId);
-            if (compra == null)
-            {
-                MessageBox.Show("Erro");
-                this.Close();
-                return;
-
-                CarregarArtigos();
-
-                CarregarItens();
-            }
-        }
+        
 
         private void CarregarItens()
         {
@@ -90,7 +91,7 @@ namespace Projeto_iShopping.Views
         private void btnMarcarAquirido_Click(object sender, EventArgs e)
         {
             // Verificar se há uma linha selecionada
-            if (DgvModocompra.CurrentRow != null)  return;
+            if (DgvModocompra.CurrentRow == null)  return;
 
             string tipo = DgvModocompra.CurrentRow.Cells["colTipo"].Value.ToString();
             if(tipo != "Previsto")
@@ -103,7 +104,7 @@ namespace Projeto_iShopping.Views
 
             try
             {
-                ItemCompraController.MarcarComoAdquirido(id, 0, 0); // Passar valores padrão para qtAdquirida e precoUnitario
+                ItemCompraController.MarcarComoAdquirido(id, NudQtAdquirida.Value, numericUpDown1.Value); // Passar valores padrão para qtAdquirida e precoUnitario
                 CarregarItens();
             }
             catch (Exception ex)
@@ -136,6 +137,8 @@ namespace Projeto_iShopping.Views
         {
             this.Close();
         }
+
+        
     }
     }
 

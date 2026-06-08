@@ -1,4 +1,4 @@
-﻿using Projeto_iShopping.Models;
+using Projeto_iShopping.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

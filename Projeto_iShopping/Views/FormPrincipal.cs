@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_iShopping.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,31 @@ namespace Projeto_iShopping.Views
         public FormPrincipal()
         {
             InitializeComponent();
+            carregarCompras();
+        }
+
+        private void carregarCompras()
+        {
+            using (var db = new iShoppingContext())
+            {
+                var compras = db.Compras
+                    .Where(c => c.FechadaPorId == null)
+                    .ToList();  
+
+
+
+                dgvComprasAberto.DataSource = null;
+
+                dgvComprasAberto.DataSource = compras.
+                     Select(c => new
+                     {
+                         c.Id,
+                         c.NomeCompra,
+                         c.DataCriacao,
+                         Utilizador = c.CriadoPor.Username
+                     })
+                     .ToList();
+            }
         }
 
         private void BTtiposdeartigos_Click(object sender, EventArgs e)
@@ -35,16 +61,12 @@ namespace Projeto_iShopping.Views
             frm.ShowDialog();
         }
 
-        private void BTorcamento_Click(object sender, EventArgs e)
-        {
-            FormOrcamento frm = new FormOrcamento();
-            frm.ShowDialog();
-        }
-
         private void BTplaneamento_Click(object sender, EventArgs e)
         {
             FormPlaneamentoCompra frm = new FormPlaneamentoCompra();
             frm.ShowDialog();
+
+            carregarCompras();
         }
 
         private void BTestatisticas_Click(object sender, EventArgs e)
@@ -90,7 +112,21 @@ namespace Projeto_iShopping.Views
 
         private void btModoCompra_Click(object sender, EventArgs e)
         {
-            FormModoCompra frm = new FormModoCompra(1); 
+            int id = -1;
+            try
+            {
+                id = (int)dgvComprasAberto.SelectedRows[0].Cells["Id"].Value;
+            }
+            catch { 
+                   }
+
+            FormModoCompra frm = new FormModoCompra(id);
+            frm.ShowDialog();
+        }
+
+        private void BTorcamento_Click_1(object sender, EventArgs e)
+        {
+            FormOrcamento frm = new FormOrcamento();
             frm.ShowDialog();
         }
     }

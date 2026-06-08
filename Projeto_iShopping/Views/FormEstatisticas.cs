@@ -30,5 +30,9 @@ namespace Projeto_iShopping.Views
             
         }
 
+        private void dgvResumoMes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

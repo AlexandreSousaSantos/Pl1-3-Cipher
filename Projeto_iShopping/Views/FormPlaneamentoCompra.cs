@@ -63,8 +63,8 @@ namespace Projeto_iShopping.Views
                         c.NomeCompra, 
                         c.DataCriacao,
                         Estado = c.FechadaPorId == null
-                        ? "Fechada"
-                        : "Aberta",
+                        ? "Aberta"
+                        : "Fechada",
                         DataFecho = c.DataFechada,
                         Utilizador = c.CriadoPor.Username
                     })
@@ -125,13 +125,13 @@ namespace Projeto_iShopping.Views
                 DataGridViewRow linha = dgvCompras.SelectedRows[0];
 
                 // 2. Obter o objeto Compra associado à linha
-                Compra compraSelecionada = (Compra)linha.DataBoundItem;
+                int id = Convert.ToInt32(linha.Cells["Id"].Value);
 
                 // 3. Eliminar pelo ID
-                CompraController.EliminarCompra(compraSelecionada.Id);
+                CompraController.EliminarCompra(id);
 
                 // 4. Atualizar a grelha
-                dgvCompras.DataSource = CompraController.ListarTodas();
+                carregarCompras();
 
                 MessageBox.Show("Compra eliminado com sucesso!!!");
             }
