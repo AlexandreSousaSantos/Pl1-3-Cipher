@@ -300,37 +300,45 @@ namespace Projeto_iShopping.Views
 
         private void btnEditarArtigo_Click(object sender, EventArgs e)
         {
-            //Verifica se há uma linha selecionada
+            // Verifica se há uma linha selecionada
             if (dgvEditar.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Seleciona um item para editar.");
+                MessageBox.Show("Seleciona um item para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Verifica se foi selecionado um novo artigo no comboBox
+            // Verifica se foi selecionado um artigo no comboBox
             if (comboBoxArtigos.SelectedValue == null)
             {
-                MessageBox.Show("Seleciona o artigo que queres usar.");
+                MessageBox.Show("Seleciona o artigo que queres usar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
-            //Obtem o ID do item de compra da linha selecionada
+
+            // Obtém o ID do item de compra da linha selecionada
             int itemId = (int)dgvEditar.SelectedRows[0].Cells["Id"].Value;
-            //Obteem o novo artigo selecionado no comboBox
+            // Obtém o novo artigo selecionado no comboBox
             int novoArtigoId = Convert.ToInt32(comboBoxArtigos.SelectedValue);
-            //Atualizar na base de dados
+            // Obtém a nova quantidade do controlo numérico
+            int novaQuantidade = (int)numQuantidade.Value;
+
+            // Atualiza o artigo e a quantidade na base de dados
             using (iShoppingContext db = new iShoppingContext())
             {
                 var item = db.ItemCompra.Find(itemId);
                 if (item == null)
                 {
-                    MessageBox.Show("Item não encontrado.");
+                    MessageBox.Show("Item não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                item.ArtigoId = novoArtigoId; // Troca o artigo
+
+                item.ArtigoId = novoArtigoId;               // Atualiza o artigo
+                item.QuantidadePrevista = novaQuantidade;    // Atualiza a quantidade
+                item.DataAlteracao = DateTime.Now;           // Regista a data de alteração
+
                 db.SaveChanges();
             }
-            MessageBox.Show("Artigo atualizado com sucesso.");
+
+            MessageBox.Show("Item atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             AtualizarGrelha(); // Atualiza a grelha para mostrar a alteração
         }
     }
