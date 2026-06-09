@@ -102,13 +102,31 @@ namespace Projeto_iShopping.Views
         // Abre modo de compra para a compra selecionada
         private void btModoCompra_Click(object sender, EventArgs e)
         {
-            int id = -1;
-            try
+            // Verifica se há linhas na grid
+            if (dgvComprasAberto.Rows.Count == 0)
             {
-                id = (int)dgvComprasAberto.SelectedRows[0].Cells["Id"].Value;
+                MessageBox.Show("Não existem compras em aberto!!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            catch { }
 
+            // Verifica se há uma linha selecionada
+            if (dgvComprasAberto.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleciona uma compra primeiro!!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Tenta obter o ID
+            if (!int.TryParse(dgvComprasAberto.SelectedRows[0].Cells["Id"].Value?.ToString(), out int id))
+            {
+                MessageBox.Show("Não foi possível obter a compra selecionada!!!", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Abre o formulário
             FormModoCompra frm = new FormModoCompra(id);
             frm.ShowDialog();
         }

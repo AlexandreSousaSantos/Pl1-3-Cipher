@@ -206,6 +206,8 @@ Focada em:
 ---
 
 ## 🧩 Diagrama de Classes
- colocar imagem aqui!!
+ 
+ <img width="945" height="1278" alt="Diagrama de Classes drawio (1)" src="https://github.com/user-attachments/assets/6d0882a7-f0ae-4b99-b124-9f556e1ee8b3" />
 
- falta captura de ecrã, estrutura do projeto, projeto académico
+
+
