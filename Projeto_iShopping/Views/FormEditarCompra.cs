@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -169,11 +169,18 @@ namespace Projeto_iShopping.Views
 
         private void btnGuardarCompra_Click(object sender, EventArgs e)
         {
+            // Verifica se o utilizador está autenticado
+            if (Sessao.UtilizadorAtual == null)
+            {
+                MessageBox.Show("Utilizador não autenticado. Por favor, faça login.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string nome = txtNomeCompra.Text.Trim();
 
             if (string.IsNullOrEmpty(nome))
             {
-                MessageBox.Show("Nome obrigatório.");
+                MessageBox.Show("Nome obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -181,6 +188,7 @@ namespace Projeto_iShopping.Views
             {
                 if (!_isEdicao)
                 {
+                    // Modo criação: cria uma nova compra na base de dados
                     var compra = new Compra
                     {
                         NomeCompra = nome,
@@ -194,28 +202,29 @@ namespace Projeto_iShopping.Views
                     _compraId = compra.Id;
                     _isEdicao = true;
 
+                    // Ativa os controlos de adição/remoção de itens agora que a compra existe
                     btnAdicionar.Enabled = true;
                     btnRemoverItem.Enabled = true;
                     comboBoxArtigos.Enabled = true;
                     numQuantidade.Enabled = true;
-                    // ATENÇÃO A COMPRA NÃO ESTÁ A SER EDITADA
                     btnGuardarCompra.Text = "Atualizar Nome";
 
-                    MessageBox.Show("Compra criada com sucesso.");
+                    MessageBox.Show("Compra criada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    // Modo edição: atualiza o nome da compra existente
                     var compra = db.Compras.Find(_compraId);
 
                     if (compra == null)
                     {
-                        MessageBox.Show("Compra não encontrada.");
+                        MessageBox.Show("Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     if (compra.FechadaPorId != null)
                     {
-                        MessageBox.Show("Compra fechada.");
+                        MessageBox.Show("Esta compra está fechada e não pode ser editada.", "Compra Fechada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -224,7 +233,7 @@ namespace Projeto_iShopping.Views
 
                     db.SaveChanges();
 
-                    MessageBox.Show("Compra atualizada com sucesso.");
+                    MessageBox.Show("Compra atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

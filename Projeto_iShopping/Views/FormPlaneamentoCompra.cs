@@ -1,4 +1,4 @@
-﻿using Projeto_iShopping.Controller;
+using Projeto_iShopping.Controller;
 using Projeto_iShopping.Models;
 using System;
 using System.Data;
@@ -91,31 +91,31 @@ namespace Projeto_iShopping.Views
         {
             if (dgvCompras.CurrentRow == null)
             {
-                MessageBox.Show("Selecione uma compra!!!");
+                MessageBox.Show("Selecione uma compra para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int idCompra = Convert.ToInt32
-                (dgvCompras.CurrentRow.Cells["Id"].Value);
+            int idCompra = Convert.ToInt32(dgvCompras.CurrentRow.Cells["Id"].Value);
 
             using (var db = new iShoppingContext())
             {
-                var compra = db.Compras.FirstOrDefault
-                    (c => c.Id == idCompra);
+                var compra = db.Compras.FirstOrDefault(c => c.Id == idCompra);
 
                 if (compra == null)
                 {
+                    MessageBox.Show("Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (!string.IsNullOrEmpty(compra.FechadaPorId))
                 {
                     // Não permitir edição de compras já fechadas: mostrar aviso ao utilizador
-                    MessageBox.Show("A compra já está fechada.");
+                    MessageBox.Show("A compra já está fechada e não pode ser editada.", "Compra Fechada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                FormEditarCompra frm = new FormEditarCompra();
+                // Passa o ID da compra ao formulário para abrir em modo de edição
+                FormEditarCompra frm = new FormEditarCompra(idCompra);
                 frm.ShowDialog();
                 carregarCompras();
             }
