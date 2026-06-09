@@ -1,4 +1,4 @@
-﻿using Projeto_iShopping.Models;
+using Projeto_iShopping.Models;
 using Projeto_iShopping.Controller;
 using System;
 using System.Data;
@@ -117,6 +117,13 @@ namespace Projeto_iShopping.Views
         private void BTorcamento_Click_1(object sender, EventArgs e)
         {
             FormOrcamento frm = new FormOrcamento();
+            frm.ShowDialog();
+        }
+
+        // Abre formulário de gestão de utilizadores
+        private void BTutilizadores_Click(object sender, EventArgs e)
+        {
+            FormUtilizadores frm = new FormUtilizadores();
             frm.ShowDialog();
         }
     }

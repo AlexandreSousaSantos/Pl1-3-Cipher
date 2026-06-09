@@ -1,4 +1,4 @@
-﻿namespace Projeto_iShopping.Views
+namespace Projeto_iShopping.Views
 {
     partial class FormPrincipal
     {
@@ -39,6 +39,7 @@
             this.BTSair = new System.Windows.Forms.Button();
             this.btnEditarCompra = new System.Windows.Forms.Button();
             this.BTorcamento = new System.Windows.Forms.Button();
+            this.BTutilizadores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprasAberto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,11 +152,22 @@
             this.BTorcamento.UseVisualStyleBackColor = true;
             this.BTorcamento.Click += new System.EventHandler(this.BTorcamento_Click_1);
             // 
+            // BTutilizadores
+            // 
+            this.BTutilizadores.Location = new System.Drawing.Point(340, 42);
+            this.BTutilizadores.Name = "BTutilizadores";
+            this.BTutilizadores.Size = new System.Drawing.Size(95, 24);
+            this.BTutilizadores.TabIndex = 13;
+            this.BTutilizadores.Text = "Utilizadores";
+            this.BTutilizadores.UseVisualStyleBackColor = true;
+            this.BTutilizadores.Click += new System.EventHandler(this.BTutilizadores_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BTutilizadores);
             this.Controls.Add(this.BTorcamento);
             this.Controls.Add(this.btnEditarCompra);
             this.Controls.Add(this.BTSair);
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Button BTSair;
         private System.Windows.Forms.Button btnEditarCompra;
         private System.Windows.Forms.Button BTorcamento;
+        private System.Windows.Forms.Button BTutilizadores;
     }
 }
