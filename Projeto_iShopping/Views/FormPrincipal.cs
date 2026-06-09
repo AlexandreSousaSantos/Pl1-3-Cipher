@@ -24,7 +24,9 @@ namespace Projeto_iShopping.Views
                     .Where(c => c.FechadaPorId == null)
                     .ToList();
 
+                // Limpa a fonte de dados antes de atribuir a nova lista
                 dgvComprasAberto.DataSource = null;
+                // Atribui a nova lista de compras abertas à grid
                 dgvComprasAberto.DataSource = compras.
                      Select(c => new
                      {

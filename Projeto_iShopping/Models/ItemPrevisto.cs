@@ -8,6 +8,9 @@ namespace Projeto_iShopping.Models
     public class ItemPrevisto : ItemCompra
     {
         public bool Adquirido { get; set; }
+        // Nota: existe já QuantidadeAdquirida no base class (decimal?).
+        // Este campo "quantidadeAdquirida" (float) parece redundante e pode causar confusão.
+        // Preferir utilizar QuantidadeAdquirida (decimal?) da classe base para evitar problemas de precisão.
         public float quantidadeAdquirida { get; set; }
     }
 }

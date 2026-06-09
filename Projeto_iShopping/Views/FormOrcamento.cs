@@ -55,8 +55,6 @@ namespace Projeto_iShopping.Views
             return true;
         }
 
-        }
-
         // Adiciona ou atualiza orçamento
         private void btnAdicionar_Click(object sender, EventArgs e)
         {

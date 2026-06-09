@@ -130,18 +130,22 @@ namespace Projeto_iShopping.Controller
             {
                 using (iShoppingContext db = new iShoppingContext())
                 {
+                    // Validar existência da compra e estado atual se está aberta para permitir fechamento.
                     Compra compra = db.Compras.Find(compraId);
                     if (compra == null)
                     {
                         MessageBox.Show("Compra não encontrada.");
                         return;
                     }
+                    //Conclui o fechamento.
                     if (compra.Estado == "Fechada")
                     {
                         MessageBox.Show("Esta compra já foi fechada.");
                         return;
                     }
 
+                    // Observação: o custo é calculado somando (QuantidadeAdquirida * PrecoUnitario) para todos os itens
+                    // (ver método CalcularCustoTotal). Este valor será usado para validar e debitar do orçamento.
                     // Calcular custo total da compra
                     decimal custoTotal = CalcularCustoTotal(compraId, db);
                     compra.CustoTotal = custoTotal;
@@ -149,6 +153,7 @@ namespace Projeto_iShopping.Controller
                     // Obter orçamento do mês atual
                     string mesAtual = DateTime.Now.ToString("MM/yyyy");
                     Orcamento orcamento = db.Orcamento.FirstOrDefault(o => o.Mes == mesAtual);
+                    // A pesquisa do orçamento usa o formato "MM/yyyy" (mês/ano) para localizar o orçamento corrente.
 
                     if (orcamento == null)
                     {
@@ -157,6 +162,7 @@ namespace Projeto_iShopping.Controller
                     }
 
                     // Validar se há orçamento disponível
+                    // Saldo disponível = Valor máximo definido para o mês menos o custo já gasto até o momento.
                     decimal saldoDisponivel = orcamento.ValorMaximo - orcamento.CustoGasto;
                     if (custoTotal > saldoDisponivel)
                     {
@@ -172,6 +178,7 @@ namespace Projeto_iShopping.Controller
                     compra.OrcamentoId = orcamento.Id;
 
                     // Descontar custo do orçamento
+                    // Ao fechar a compra atualiza-se o total gasto do orçamento e registra-se quem fez a alteração.
                     orcamento.CustoGasto += custoTotal;
                     orcamento.AlteradoPorId = fechadoPorId;
 

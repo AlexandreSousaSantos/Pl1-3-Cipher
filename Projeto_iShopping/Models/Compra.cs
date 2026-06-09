@@ -16,6 +16,8 @@ namespace Projeto_iShopping.Models
 
         public string Estado { get; set; }
         public DateTime? DataFechada { get; set; }
+        // FechadaPorId guarda o identificador do utilizador que fechou a compra.
+        // Observação: é string (não int) provavelmente por erro; idealmente deveria ser int? para FK.
         public string FechadaPorId { get; set; }
         public int? AlteradoPorId { get; set; }
 

@@ -10,6 +10,11 @@ namespace Projeto_iShopping.Views
 {
     public partial class FormPlaneamentoCompra : Form
     {
+        // Formulário de planeamento de compras
+        // Permite listar compras (todas / abertas / fechadas), criar, editar e eliminar compras planeadas.
+        // Observações:
+        // - As compras só podem ser editadas enquanto não estiverem fechadas.
+        // - A grelha mostra informações essenciais (Id, nome, data, estado e utilizador criador).
         public FormPlaneamentoCompra()
         {
             InitializeComponent();
@@ -69,11 +74,14 @@ namespace Projeto_iShopping.Views
 
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Quando o filtro de estado muda, recarregar a lista com o filtro selecionado
             carregarCompras();
         }
 
         private void btnNovaCompra_Click(object sender, EventArgs e)
         {
+            // Abrir o formulário de edição/criação de compra.
+            // Depois de fechar o formulário, recarregamos a lista para refletir alterações.
             FormEditarCompra frm = new FormEditarCompra();
             frm.ShowDialog();
             carregarCompras();
@@ -102,6 +110,7 @@ namespace Projeto_iShopping.Views
 
                 if (!string.IsNullOrEmpty(compra.FechadaPorId))
                 {
+                    // Não permitir edição de compras já fechadas: mostrar aviso ao utilizador
                     MessageBox.Show("A compra já está fechada.");
                     return;
                 }
@@ -128,7 +137,8 @@ namespace Projeto_iShopping.Views
                 // 4. Atualizar a grelha
                 carregarCompras();
 
-                MessageBox.Show("Compra eliminado com sucesso!!!");
+                // Confirmar remoção ao utilizador
+                MessageBox.Show("Compra eliminada com sucesso!!!");
             }
             else
             {

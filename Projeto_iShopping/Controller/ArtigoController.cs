@@ -8,6 +8,8 @@ namespace Projeto_iShopping.Controller
     // Controlador para gerir operações de artigos
     public class ArtigoController
     {
+        // Observação: os métodos usam o contexto local (EF DbContext) e devolvem/aceitam objetos
+        // que são diretamente persistidos. Validações básicas são feitas aqui.
         // Lista todos os artigos ordenados por nome
         public static List<Artigo> ListarTodos()
         {

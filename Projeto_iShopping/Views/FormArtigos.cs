@@ -26,79 +26,45 @@ namespace Projeto_iShopping.Views
         // Carrega lista de tipos no ComboBox
         private void CarregarTipos()
         {
-			var tipos = TipoArtigoController.ListarTodos();
+            var tipos = TipoArtigoController.ListarTodos();
 
-			cmbTipo.DataSource = tipos;
-			cmbTipo.DisplayMember = "Descricao";
-			cmbTipo.ValueMember = "Id";
-		}
+            cmbTipo.DataSource = tipos;
+            cmbTipo.DisplayMember = "Descricao";
+            cmbTipo.ValueMember = "Id";
+        }
 
-		private void CarregarArtigos()
-		{
-			try
-			{
-				var artigos = ArtigoController.ListarTodos() ?? new List<Artigo>();
+        // Carrega lista de artigos na grid
+        private void CarregarArtigos()
+        {
+            try
+            {
+                var artigos = ArtigoController.ListarTodos() ?? new List<Artigo>();
 
-				dvgArtigos.DataSource = artigos.Select(a => new
-				{
-					a.Id,
-					a.NomeArtigo,
-					Tipo = a.TipoArtigo.Descricao
-				}).ToList();
+                dvgArtigos.DataSource = artigos.Select(a => new
+                {
+                    a.Id,
+                    a.NomeArtigo,
+                    Tipo = a.TipoArtigo != null ? a.TipoArtigo.Descricao : ""
+                }).ToList();
 
-				if (artigos.Count == 0)
-				{
-					MessageBox.Show("Não existem artigos.");
-					return;
-				}
+                if (artigos.Count == 0)
+                {
+                    MessageBox.Show("Não existem artigos.");
+                    return;
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
+            }
+        }
 
-				
-			}
-			catch (Exception err)
-			{
-					MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
-					}
-				}
-
-				// Carrega lista de artigos na grid
-				private void CarregarArtigos()
-				{
-					try
-					{
-						var artigos = ArtigoController.ListarTodos() ?? new List<Artigo>();
-
-
-						dvgArtigos.DataSource = artigos.Select(a => new
-						{
-							a.Id,
-							a.NomeArtigo,
-							Tipo = a.TipoArtigo.Descricao
-						}).ToList();
-
-						if (artigos.Count == 0)
-						{
-							MessageBox.Show("Não existem artigos.");
-							return;
-						}
-
-
-					}
-					catch (Exception err)
-					{
-						MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
-					}
-				}
-
-				// Limpa campos para adicionar novo artigo
-				private void btnNovo_Click(object sender, EventArgs e)
-				{
-					dvgArtigos.ClearSelection();
-					tbNomeArtigo.Clear();
-					cmbTipo.SelectedIndex = -1;
-
-
-
-
+        // Limpa campos para adicionar novo artigo
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            dvgArtigos.ClearSelection();
+            tbNomeArtigo.Clear();
+            cmbTipo.SelectedIndex = -1;
         }
 
         // Guardar novo ou atualizar artigo existente

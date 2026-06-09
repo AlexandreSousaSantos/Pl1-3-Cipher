@@ -55,6 +55,8 @@ namespace Projeto_iShopping.Models
         }
 
         // Verifica se item foi não previsto
+        // Previsto indica se foi comprado acima da quantidade prevista
+        // (calc. como verdadeiro quando QuantidadeNPrevista > 0)
         public bool Previsto
         {
             get { return QuantidadeNPrevista > 0; }

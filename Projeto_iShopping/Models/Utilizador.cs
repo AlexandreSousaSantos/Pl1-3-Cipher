@@ -12,6 +12,7 @@ namespace Projeto_iShopping.Models
 
         public static implicit operator Utilizador(int v)
         {
+            // Operador implícito não implementado. Remanescente de código anterior.
             throw new NotImplementedException();
         }
 
