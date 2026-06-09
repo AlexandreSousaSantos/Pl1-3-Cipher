@@ -3,8 +3,10 @@ using System.Linq;
 
 namespace Projeto_iShopping.Models
 {
+    // Inicializador de base de dados com seed de dados padrão
     internal class AppDbInitializer : DropCreateDatabaseIfModelChanges<iShoppingContext>
     {
+        // Popula a base de dados com dados iniciais
         protected override void Seed(iShoppingContext context)
         {
             base.Seed(context);

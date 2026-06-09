@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Projeto_iShopping.Controller
 {
+    // Controlador para gerir operações de itens de compra
     public class ItemCompraController
     {
-        //Listar todos os itens de compra
+        // Lista todos os itens de compra
         public static List<ItemCompra> ListarItensCompra()
         {
             using (var context = new iShoppingContext())
@@ -14,9 +16,9 @@ namespace Projeto_iShopping.Controller
                 return context.ItemCompra.ToList();
             }
         }
-    
-    //Adicionar um novo item de compra previsto
-    public static void AdicionarItemCompra(ItemCompra itemPrevisto)
+
+        // Adicionar item de compra previsto
+        public static void AdicionarItemCompra(ItemCompra itemPrevisto)
         {
             using (var context = new iShoppingContext())
             {
@@ -24,7 +26,8 @@ namespace Projeto_iShopping.Controller
                 context.SaveChanges();
             }
         }
-        //Adicionar um novo item de compra não previsto
+
+        // Adicionar item de compra não previsto
         public static void AdicionarItemCompraNaoPrevisto(ItemNaoPrevisto itemNaoPrevisto)
         {
             using (var context = new iShoppingContext())
@@ -34,7 +37,8 @@ namespace Projeto_iShopping.Controller
                 context.SaveChanges();
             }
         }
-        //Listar itens previstos
+
+        // Lista itens previstos de uma compra
         public static List<ItemPrevisto> ListarPrevistosDeCompra(int compraId)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -45,6 +49,8 @@ namespace Projeto_iShopping.Controller
                     .ToList();
             }
         }
+
+        // Lista itens não previstos de uma compra
         public static List<ItemNaoPrevisto> ListarNaoPrevistosDeCompra(int compraId)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -56,6 +62,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
+        // Marca item previsto como adquirido com quantidade e preço
         public static void MarcarComoAdquirido(int itemId, decimal qtAdquirida, decimal precoUnitario)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -73,6 +80,5 @@ namespace Projeto_iShopping.Controller
                 db.SaveChanges();
             }
         }
-
     }
 }

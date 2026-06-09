@@ -3,6 +3,7 @@ using System;
 
 namespace Projeto_iShopping.Models
 {
+    // Modelo para utilizador do sistema
     public class Utilizador
     {
         public int Id { get; set; }
@@ -13,6 +14,7 @@ namespace Projeto_iShopping.Models
         {
             throw new NotImplementedException();
         }
+
         public override string ToString()
         {
             return Username;

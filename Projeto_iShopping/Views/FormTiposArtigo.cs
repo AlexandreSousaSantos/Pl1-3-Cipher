@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace Projeto_iShopping.Views
 {
+    // Formulário para gerir tipos de artigo
     public partial class FormTiposArtigo : Form
     {
         public FormTiposArtigo()
@@ -13,55 +14,55 @@ namespace Projeto_iShopping.Views
             InitializeComponent();
         }
 
+        // Carrega tipos de artigo ao abrir o formulário
         private void FormTiposArtigo_Load(object sender, EventArgs e)
         {
             Carregar();
         }
+
+        // Carrega lista de tipos de artigo na grid
         private void Carregar()
         {
             try
             {
-                //a lista de tipos de artigo é obtida através do controlador e atribuída ao DataGridView
                 List<TipoArtigo> tipos = TipoArtigoController.ListarTodos();
                 dvgTipos.DataSource = tipos;
                 dvgTipos.ClearSelection();
                 dvgTipos.CurrentCell = null;
-
             }
-            // caso aconteça algum erro durante a obtenção dos dados, uma mensagem de erro é exibida para o usuário
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar os tipos de artigo: " + ex.Message);
             }
         }
 
+        // Limpa campos para adicionar novo tipo de artigo
         private void btnNovo_Click(object sender, EventArgs e)
         {
             dvgTipos.ClearSelection();
             dvgTipos.CurrentCell = null;
             tbDescricao.Clear();
-            //o focus serve para colocar o cursor no campo de descrição, facilitando a inserção de um novo tipo de artigo
             tbDescricao.Focus();
         }
 
+        // Guardar novo ou atualizar tipo de artigo existente
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-              
+                // Se existe linha selecionada, atualizar
                 if (dvgTipos.CurrentRow != null)
                 {
-                    //atualizar o tipo de artigo selecionado
-                    int id = (int)dvgTipos.CurrentRow.Cells["Id"].Value; //obtém o ID do tipo de artigo selecionado na celula "Id"
+                    int id = (int)dvgTipos.CurrentRow.Cells["Id"].Value;
                     TipoArtigoController.Atualizar(id, tbDescricao.Text);
                 }
                 else
                 {
-                    //criar um novo tipo de artigo
+                    // Caso contrário, criar novo tipo
                     TipoArtigoController.Criar(tbDescricao.Text);
                 }
-                Carregar(); //recarrega a lista de tipos de artigo para refletir as alterações feitas
-                tbDescricao.Clear(); 
+                Carregar();
+                tbDescricao.Clear();
             }
             catch (Exception ex)
             {
@@ -69,6 +70,7 @@ namespace Projeto_iShopping.Views
             }
         }
 
+        // Elimina tipo de artigo selecionado
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dvgTipos.SelectedRows.Count > 0)

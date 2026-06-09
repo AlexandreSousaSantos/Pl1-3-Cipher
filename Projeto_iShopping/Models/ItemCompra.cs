@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto_iShopping.Models
 {
+    // Modelo base para itens de compra (herança com tipos ItemPrevisto e ItemNaoPrevisto)
     [Table("ItensCompra")]
     public class ItemCompra
     {
@@ -19,6 +20,7 @@ namespace Projeto_iShopping.Models
 
         [Required]
         public decimal QuantidadePrevista { get; set; }
+
         public int ArtigoId { get; set; }
 
         [ForeignKey("ArtigoId")]
@@ -32,10 +34,12 @@ namespace Projeto_iShopping.Models
 
         [ForeignKey("CriadoPorId")]
         public Utilizador CriadoPor { get; set; }
+
         public string Observacoes { get; set; }
 
         public DateTime? DataAlteracao { get; set; }
 
+        // Calcula quantidade adquirida além do previsto
         public decimal QuantidadeNPrevista
         {
             get
@@ -50,6 +54,7 @@ namespace Projeto_iShopping.Models
             set { }
         }
 
+        // Verifica se item foi não previsto
         public bool Previsto
         {
             get { return QuantidadeNPrevista > 0; }

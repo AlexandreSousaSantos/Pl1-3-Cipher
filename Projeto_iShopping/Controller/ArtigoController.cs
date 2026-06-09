@@ -5,8 +5,10 @@ using System.Linq;
 
 namespace Projeto_iShopping.Controller
 {
+    // Controlador para gerir operações de artigos
     public class ArtigoController
     {
+        // Lista todos os artigos ordenados por nome
         public static List<Artigo> ListarTodos()
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -15,6 +17,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
+        // Lista artigos por tipo
         public static List<Artigo> ListarPorTipo(int tipoArtigoId)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -25,15 +28,17 @@ namespace Projeto_iShopping.Controller
                     .ToList();
             }
         }
-        //obter artigo por id
+
+        // Obter artigo por ID
         public static Artigo ObterPorId(int id)
         {
             using (iShoppingContext db = new iShoppingContext())
             {
-                // Include("TipoArtigo") para carregar os dados do tipo de artigo relacionado
                 return db.Artigos.Include("TipoArtigo").FirstOrDefault(a => a.Id == id);
             }
         }
+
+        // Criar novo artigo
         public static void Criar(string nomeArtigo, int tipoArtigoId)
         {
             if (string.IsNullOrWhiteSpace(nomeArtigo))
@@ -52,6 +57,8 @@ namespace Projeto_iShopping.Controller
                 db.SaveChanges();
             }
         }
+
+        // Atualizar artigo existente
         public static void Atualizar(int id, string nomeArtigo, int tipoArtigoId)
         {
             if (string.IsNullOrWhiteSpace(nomeArtigo))
@@ -72,7 +79,8 @@ namespace Projeto_iShopping.Controller
                 db.SaveChanges();
             }
         }
-       
+
+        // Eliminar artigo (remove itens relacionados primeiro)
         public static void Eliminar(int id)
         {
             using (iShoppingContext db = new iShoppingContext())

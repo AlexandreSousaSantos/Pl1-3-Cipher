@@ -3,8 +3,10 @@ using System.Linq;
 
 namespace Projeto_iShopping.Controller
 {
+    // Controlador para gerir autenticação e utilizadores
     public class UtilizadorController
     {
+        // Autentica utilizador com login e password
         public static bool Autenticar(string login, string password, out string mensagem)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -20,7 +22,6 @@ namespace Projeto_iShopping.Controller
                 mensagem = "Autenticação efetuada com sucesso.";
                 return true;
             }
-
         }
     }
 }

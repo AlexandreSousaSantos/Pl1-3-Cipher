@@ -13,30 +13,28 @@ namespace Projeto_iShopping.Views
         private object txtObservacoes;
         private Compra compra;
 
+        // Inicializa o formulário e carrega dados da compra
         public FormModoCompra(int compraId)
         {
-
             InitializeComponent();
             _compraId = compraId;
-            
-             compra = CompraController.ObterPorId(_compraId);
+
+            compra = CompraController.ObterPorId(_compraId);
             if (compra == null)
             {
                 MessageBox.Show("Erro");
                 this.Close();
                 return;
-
             }
             CarregarArtigos();
-
             CarregarItens();
-
         }
 
         private void NudQtAdquirida_ValueChanged(object sender, EventArgs e)
         {
-
         }
+
+        // Carrega artigos no ComboBox
         private void CarregarArtigos()
         {
             cmbArtigo.Items.Clear();
@@ -49,8 +47,7 @@ namespace Projeto_iShopping.Views
             cmbArtigo.ValueMember = "Id";
         }
 
-        
-
+        // Carrega itens previstos e não previstos na grid
         private void CarregarItens()
         {
             DgvModocompra.DataSource = null;
@@ -67,8 +64,7 @@ namespace Projeto_iShopping.Views
             DgvModocompra.Columns.Add("colObs", "Observações");
             DgvModocompra.Columns["colId"].Visible = false;
 
-
-            //itens previstos
+            // Adicionar itens previstos à grid
             List<ItemPrevisto> previsto = ItemCompraController.ListarPrevistosDeCompra(_compraId);
             foreach (ItemPrevisto i in previsto)
             {
@@ -76,7 +72,7 @@ namespace Projeto_iShopping.Views
                 DgvModocompra.Rows.Add(i.Id, "Previsto", art, i.QuantidadePrevista, i.QuantidadeAdquirida, i.PrecoUnitario, "", "");
             }
 
-            //itens não previstos
+            // Adicionar itens não previstos à grid
             List<ItemNaoPrevisto> nprevisto = ItemCompraController.ListarNaoPrevistosDeCompra(_compraId);
             foreach (ItemNaoPrevisto i in nprevisto)
             {
@@ -85,9 +81,9 @@ namespace Projeto_iShopping.Views
             }
         }
 
+        // Marca item previsto como adquirido com quantidade e preço
         private void btnMarcarAquirido_Click(object sender, EventArgs e)
         {
-            // Verificar se há uma linha selecionada
             if (DgvModocompra.CurrentRow == null)  return;
 
             string tipo = DgvModocompra.CurrentRow.Cells["colTipo"].Value.ToString();
@@ -101,7 +97,7 @@ namespace Projeto_iShopping.Views
 
             try
             {
-                ItemCompraController.MarcarComoAdquirido(id, NudQtAdquirida.Value, numericUpDown1.Value); // Passar valores padrão para qtAdquirida e precoUnitario
+                ItemCompraController.MarcarComoAdquirido(id, NudQtAdquirida.Value, numericUpDown1.Value);
                 CarregarItens();
             }
             catch (Exception ex)
@@ -110,6 +106,7 @@ namespace Projeto_iShopping.Views
             }
         }
 
+        // Adiciona novo item não previsto à compra
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             Artigo art = cmbArtigo.SelectedItem as Artigo;
@@ -139,8 +136,9 @@ namespace Projeto_iShopping.Views
             {
                 MessageBox.Show("Erro ao adicionar item: " + ex.Message);
             }
-            }
+        }
 
+        // Fecha a compra após confirmação do utilizador
         private void btnFecharCompra_Click(object sender, EventArgs e)
         {
             if (Sessao.UtilizadorAtual == null)
@@ -162,8 +160,5 @@ namespace Projeto_iShopping.Views
                 }
             }
         }
-
-        
     }
-    }
-
+}

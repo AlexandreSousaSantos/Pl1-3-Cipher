@@ -15,18 +15,16 @@ namespace Projeto_iShopping.Views
             carregarCompras();
         }
 
+        // Carrega compras abertas na grid
         private void carregarCompras()
         {
             using (var db = new iShoppingContext())
             {
                 var compras = db.Compras
                     .Where(c => c.FechadaPorId == null)
-                    .ToList();  
-
-
+                    .ToList();
 
                 dgvComprasAberto.DataSource = null;
-
                 dgvComprasAberto.DataSource = compras.
                      Select(c => new
                      {
@@ -39,38 +37,43 @@ namespace Projeto_iShopping.Views
             }
         }
 
+        // Abre formulário de tipos de artigos
         private void BTtiposdeartigos_Click(object sender, EventArgs e)
         {
             FormTiposArtigo frm = new FormTiposArtigo();
             frm.ShowDialog();
         }
 
+        // Abre formulário de artigos
         private void BTartigos_Click(object sender, EventArgs e)
         {
             FormArtigos frm = new FormArtigos();
             frm.ShowDialog();
         }
 
+        // Abre formulário para editar compra
         private void btnEditarCompra_Click(object sender, EventArgs e)
         {
             FormEditarCompra frm = new FormEditarCompra();
             frm.ShowDialog();
         }
 
+        // Abre planeamento de compras
         private void BTplaneamento_Click(object sender, EventArgs e)
         {
             FormPlaneamentoCompra frm = new FormPlaneamentoCompra();
             frm.ShowDialog();
-
             carregarCompras();
         }
 
+        // Abre estatísticas
         private void BTestatisticas_Click(object sender, EventArgs e)
         {
             FormEstatisticas frm = new FormEstatisticas();
             frm.ShowDialog();
         }
 
+        // Exporta compras fechadas para CSV
         private void BTexportarcsv_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -84,9 +87,7 @@ namespace Projeto_iShopping.Views
             }
         }
 
-        
-        
-
+        // Fecha a aplicação
         private void BTSair_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -94,9 +95,9 @@ namespace Projeto_iShopping.Views
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-
         }
 
+        // Abre modo de compra para a compra selecionada
         private void btModoCompra_Click(object sender, EventArgs e)
         {
             int id = -1;
@@ -104,13 +105,13 @@ namespace Projeto_iShopping.Views
             {
                 id = (int)dgvComprasAberto.SelectedRows[0].Cells["Id"].Value;
             }
-            catch { 
-                   }
+            catch { }
 
             FormModoCompra frm = new FormModoCompra(id);
             frm.ShowDialog();
         }
 
+        // Abre formulário de orçamento
         private void BTorcamento_Click_1(object sender, EventArgs e)
         {
             FormOrcamento frm = new FormOrcamento();
@@ -118,3 +119,4 @@ namespace Projeto_iShopping.Views
         }
     }
 }
+

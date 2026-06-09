@@ -3,15 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
-
 namespace Projeto_iShopping.Controller
 {
+    // Controlador para gerir operações de orçamento
     public class OrcamentoController
     {
+        // Obter orçamento por mês específico
         public static Orcamento ObterporMes(string mes)
         {
-            // Verificar se o orçamento para o mês já existe
             using (iShoppingContext db = new iShoppingContext())
             {
                 return db.Orcamento
@@ -20,14 +19,15 @@ namespace Projeto_iShopping.Controller
                     .FirstOrDefault(o => o.Mes == mes);
             }
         }
-        // Obter o orçamento do mês selecionado com base na db
+
+        // Obter orçamento do mês atual
         public static Orcamento ObterMesAtual()
         {
             string mes = DateTime.Today.ToString("MM/yyyy");
             return ObterporMes(mes);
-
         }
 
+        // Lista todos os orçamentos
         public static List<Orcamento> ListarTodos()
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -36,7 +36,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
-        //Criar ou atualizar o orçamento para um mês específico
+        // Criar ou atualizar orçamento para um mês específico
         public static void CriarOuAtualizar(string mes, decimal valorMaximo, int Id_utilizador)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -44,7 +44,6 @@ namespace Projeto_iShopping.Controller
                 var orcamento = db.Orcamento.FirstOrDefault(o => o.Mes == mes);
                 if (orcamento == null)
                 {
-                    // Criar novo orçamento
                     orcamento = new Orcamento
                     {
                         Mes = mes,
@@ -56,13 +55,14 @@ namespace Projeto_iShopping.Controller
                 }
                 else
                 {
-                    // Atualizar orçamento existente
                     orcamento.ValorMaximo = valorMaximo;
                     orcamento.AlteradoPorId = Id_utilizador;
                 }
                 db.SaveChanges();
             }
         }
+
+        // Eliminar orçamento por mês
         public static void Eliminar(string mes)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -75,7 +75,9 @@ namespace Projeto_iShopping.Controller
                 }
             }
         }
-        public static  List<Orcamento> ListarOrcamentos()
+
+        // Lista orçamentos ordenados por valor máximo
+        public static List<Orcamento> ListarOrcamentos()
         {
             using (iShoppingContext db = new iShoppingContext())
             {
@@ -84,7 +86,6 @@ namespace Projeto_iShopping.Controller
                    .Include("AlteradoPor")
                    .OrderBy(v => v.ValorMaximo)
                    .ToList();
-              
             }
         }
     }

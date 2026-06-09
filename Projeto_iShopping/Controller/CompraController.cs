@@ -10,6 +10,7 @@ namespace Projeto_iShopping.Controller
 {
     public class CompraController
     {
+        // Lista todas as compras ordenadas por data de criação
         public static List<Compra> ListarTodas()
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -19,18 +20,8 @@ namespace Projeto_iShopping.Controller
                     .ToList();
             }
         }
-        /*public static List<Compra> ListarComprasAbertas()
-        {
-            using (iShoppingContext db = new iShoppingContext())
-            {
-                return db.Compras.Include("CriadoPor")
-                    .Where(c => c.Estado == "Aberta")
-                    .OrderByDescending(c => c.DataCriacao)
-                    .ToList();
-            }*/
 
-
-        //Criar compra
+        // Criar nova compra
         public static void CriarCompra(string nomeCompra, int criadoPorId)
         {
             try
@@ -55,7 +46,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
-        //Atualizar Compra
+        // Atualizar nome da compra
         public static void AtualizarCompra(int compraId, string nomeCompra)
         {
             try
@@ -84,8 +75,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
-
-        //Eliminar compra
+        // Eliminar compra (remove itens antes de remover compra)
         public static void EliminarCompra(int compraId)
         {
             try
@@ -119,8 +109,9 @@ namespace Projeto_iShopping.Controller
                 MessageBox.Show("Erro ao eliminar compra: " + ex.Message);
                 return;
             }
-
         }
+
+        // Obter compra por ID com dados do utilizador
         public static Compra ObterPorId(int id)
         {
             using (iShoppingContext db = new iShoppingContext())
@@ -132,7 +123,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
-        //Fechar Compra
+        // Fechar compra com validação de orçamento e deduções
         public static void FecharCompra(int compraId, int fechadoPorId)
         {
             try
@@ -173,14 +164,14 @@ namespace Projeto_iShopping.Controller
                         return;
                     }
 
-                    // Fechar compra
+                    // Atualizar dados da compra
                     compra.Estado = "Fechada";
                     compra.DataFechada = DateTime.Now;
                     compra.FechadaPorId = fechadoPorId.ToString();
                     compra.AlteradoPorId = fechadoPorId;
                     compra.OrcamentoId = orcamento.Id;
 
-                    // Descontar do orçamento
+                    // Descontar custo do orçamento
                     orcamento.CustoGasto += custoTotal;
                     orcamento.AlteradoPorId = fechadoPorId;
 
@@ -195,7 +186,7 @@ namespace Projeto_iShopping.Controller
             }
         }
 
-        // Calcular o custo total de uma compra
+        // Calcula custo total multiplicando quantidade x preço de todos os itens
         private static decimal CalcularCustoTotal(int compraId, iShoppingContext db)
         {
             var itens = db.ItemCompra.Where(i => i.CompraId == compraId).ToList();
@@ -211,7 +202,7 @@ namespace Projeto_iShopping.Controller
             return total;
         }
 
-        // Exportar compras fechadas para CSV
+        // Exportar compras fechadas para arquivo CSV com todos os itens
         public static void ExportarComprasParaCsv(string filePath)
         {
             try
@@ -231,28 +222,28 @@ namespace Projeto_iShopping.Controller
 
                     StringBuilder csvContent = new StringBuilder();
 
-                    // Adicionar cabeçalho
+                    // Adicionar linha de cabeçalho
                     csvContent.AppendLine("NomeCompra;DataCriacao;DataFechada;NomeArtigo;ArtigoPrevisto;ArtigoNaoPrevisto;QuantidadePrevista;QuantidadeAdquirida;PrecoUnitario");
 
-                    // Iterar sobre cada compra fechada
+                    // Percorrer cada compra fechada
                     foreach (var compra in comprasFechadas)
                     {
-                        // Obter itens previstos
+                        // Buscar itens previstos da compra
                         var itensPrevisto = db.ItensPrevisto
                             .Where(i => i.CompraId == compra.Id)
                             .Include(i => i.Artigo)
                             .ToList();
 
-                        // Obter itens não previstos
+                        // Buscar itens não previstos da compra
                         var itensNaoPrevisto = db.ItensNaoPrevisto
                             .Where(i => i.CompraId == compra.Id)
                             .Include(i => i.Artigo)
                             .ToList();
 
-                        // Se houver itens, adicionar linha para cada item
+                        // Adicionar linhas se houver itens
                         if (itensPrevisto.Count > 0 || itensNaoPrevisto.Count > 0)
                         {
-                            // Adicionar itens previstos
+                            // Adicionar linhas para itens previstos
                             foreach (var item in itensPrevisto)
                             {
                                 string nomeArtigo = item.Artigo != null ? item.Artigo.NomeArtigo : "";
@@ -269,7 +260,7 @@ namespace Projeto_iShopping.Controller
                                 );
                             }
 
-                            // Adicionar itens não previstos
+                            // Adicionar linhas para itens não previstos
                             foreach (var item in itensNaoPrevisto)
                             {
                                 string nomeArtigo = item.Artigo != null ? item.Artigo.NomeArtigo : "";
@@ -288,7 +279,7 @@ namespace Projeto_iShopping.Controller
                         }
                     }
 
-                    // Escrever arquivo
+                    // Guardar arquivo no caminho especificado
                     System.IO.File.WriteAllText(filePath, csvContent.ToString(), Encoding.UTF8);
                     MessageBox.Show($"Compras exportadas com sucesso para: {filePath}");
                 }
@@ -301,4 +292,3 @@ namespace Projeto_iShopping.Controller
 
     }
 }
-

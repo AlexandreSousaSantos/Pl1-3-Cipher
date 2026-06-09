@@ -7,6 +7,7 @@ using Projeto_iShopping.Controller;
 
 namespace Projeto_iShopping.Views
 {
+    // Formulário para criar ou editar lista de compras
     public partial class FormEditarCompra : Form
     {
         // Variável para armazenar o ID da compra a ser editada

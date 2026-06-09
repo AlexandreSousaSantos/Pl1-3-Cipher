@@ -8,21 +8,22 @@ using System.Windows.Forms;
 
 namespace Projeto_iShopping.Views
 {
-
+    // Formulário para gerir artigos
     public partial class FormArtigos : Form
     {
         public FormArtigos()
         {
             InitializeComponent();
-            //dvgArtigos = new System.Windows.Forms.DataGridView();
         }
 
+        // Carrega tipos e artigos ao abrir o formulário
         private void FrmArtigos_Load(object sender, EventArgs e)
         {
             CarregarTipos();
             CarregarArtigos();
         }
 
+        // Carrega lista de tipos no ComboBox
         private void CarregarTipos()
         {
 			var tipos = TipoArtigoController.ListarTodos();
@@ -55,23 +56,52 @@ namespace Projeto_iShopping.Views
 			}
 			catch (Exception err)
 			{
-				MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
-			}
-		}
+					MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
+					}
+				}
 
-		private void btnNovo_Click(object sender, EventArgs e)
-        {
-            // quando clicar no botão "Novo", abrirá um formulário para adicionar um novo artigo
-            dvgArtigos.ClearSelection();
-            tbNomeArtigo.Clear();
-            //tem que ser -1 porque é o valor que representa "nenhum item selecionado" em um ComboBox
-            cmbTipo.SelectedIndex = -1;
+				// Carrega lista de artigos na grid
+				private void CarregarArtigos()
+				{
+					try
+					{
+						var artigos = ArtigoController.ListarTodos() ?? new List<Artigo>();
+
+
+						dvgArtigos.DataSource = artigos.Select(a => new
+						{
+							a.Id,
+							a.NomeArtigo,
+							Tipo = a.TipoArtigo.Descricao
+						}).ToList();
+
+						if (artigos.Count == 0)
+						{
+							MessageBox.Show("Não existem artigos.");
+							return;
+						}
+
+
+					}
+					catch (Exception err)
+					{
+						MessageBox.Show("Erro ao carregar os artigos: " + err.Message);
+					}
+				}
+
+				// Limpa campos para adicionar novo artigo
+				private void btnNovo_Click(object sender, EventArgs e)
+				{
+					dvgArtigos.ClearSelection();
+					tbNomeArtigo.Clear();
+					cmbTipo.SelectedIndex = -1;
 
 
 
 
         }
 
+        // Guardar novo ou atualizar artigo existente
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -122,6 +152,7 @@ namespace Projeto_iShopping.Views
             
         }
 
+        // Elimina artigo selecionado
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dvgArtigos.SelectedRows.Count > 0)

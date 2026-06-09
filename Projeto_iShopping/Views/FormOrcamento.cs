@@ -5,17 +5,21 @@ using Projeto_iShopping.Controller;
 
 namespace Projeto_iShopping.Views
 {
+    // Formulário para gerir orçamentos mensais
     public partial class FormOrcamento : Form
     {
         public FormOrcamento()
         {
             InitializeComponent();
         }
+
+        // Carrega orçamentos ao abrir o formulário
         private void FormOrcamento_Load(object sender, EventArgs e)
         {
             AtualizarGrelha();
         }
 
+        // Valida dados do orçamento (mês e valor máximo)
         private bool ValidarDados( out decimal ValorMaximo)
         {
             string mesString = tbMes.Text.Split('/')[0];
@@ -51,11 +55,9 @@ namespace Projeto_iShopping.Views
             return true;
         }
 
-        private void tbMes_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
+        // Adiciona ou atualiza orçamento
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
 
@@ -82,11 +84,7 @@ namespace Projeto_iShopping.Views
             AtualizarGrelha();
         }
 
-        private void DGV_Historico_de_Orcamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        // Elimina orçamento selecionado
         private void btnElininar_Click(object sender, EventArgs e)
         {
             // Verifica se alguma linha está selecionada na grelha
@@ -110,6 +108,7 @@ namespace Projeto_iShopping.Views
             AtualizarGrelha();
         }
 
+        // Limpa campos de entrada
         private void LimparCampos()
         {
             tbMes.Text = "";
@@ -117,6 +116,7 @@ namespace Projeto_iShopping.Views
             DGV_Historico_de_Orcamentos.ClearSelection();
         }
 
+        // Atualiza grid com lista de orçamentos
         private void AtualizarGrelha()
         {
             DGV_Historico_de_Orcamentos.DataSource = OrcamentoController.ListarOrcamentos();
@@ -144,11 +144,13 @@ namespace Projeto_iShopping.Views
             }
         }
 
+        // Encerra a aplicação
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        // Atualiza orçamento do mês selecionado
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             decimal ValorMaximo = 0;

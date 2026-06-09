@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace Projeto_iShopping.Models
 {
+    // Modelo para compra
     public class Compra
     {
         public int Id { get; set; }

@@ -4,17 +4,18 @@ using System.Linq;
 
 namespace Projeto_iShopping.Controller
 {
+    // Controlador para gerir estatísticas e relatórios
     public class EstatisticasController
     {
         private iShoppingContext db = new iShoppingContext();
 
-        // Semana do mês
+        // Calcula semana do mês
         private int ObterSemanaDoMes(DateTime data)
         {
             return ((data.Day - 1) / 7) + 1;
         }
 
-        // Resumo mensal
+        // Mostra resumo mensal com orçamentos
         public object MostrarResumoMensal()
         {
             var compras = db.Compras.ToList();
@@ -48,7 +49,7 @@ namespace Projeto_iShopping.Controller
             return resultado.ToList();
         }
 
-        // Compras fechadas % previsto versus não previsto
+        // Mostra compras fechadas com percentagem de itens previstos vs não previstos
         public object MostrarComprasFechadas()
         {
             var compras = db.Compras
@@ -82,7 +83,7 @@ namespace Projeto_iShopping.Controller
             return resultado.ToList();
         }
 
-        // Sugestão de orçamento
+        // Mostra sugestão de orçamento baseada na média e último valor
         public object MostrarSugestaoOrcamento()
         {
             var orcamentos = db.Orcamento.ToList();
@@ -104,7 +105,7 @@ namespace Projeto_iShopping.Controller
             };
         }
 
-        // Sugestões de lista de compras baseado no mês atual
+        // Mostra sugestão de compras baseada no histórico por semana
         public object MostrarSugestaoCompras()
         {
             var compras = db.Compras.ToList();
@@ -127,7 +128,6 @@ namespace Projeto_iShopping.Controller
 
                     TotalCompras = g.Count(),
 
-                    // previsão simples baseada em histórico
                     Sugestao =
                         Math.Round(g.Count() / (double)db.Compras.Count(), 2)
                 });

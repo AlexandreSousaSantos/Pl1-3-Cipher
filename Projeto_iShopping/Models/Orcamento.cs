@@ -1,16 +1,16 @@
 ﻿
-
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto_iShopping.Models
 {
+    // Modelo para orçamento mensal
     public class Orcamento
     {
         public int Id { get; set; }
         public string Mes { get; set; }
-
         public decimal ValorMaximo { get; set; }
         public decimal CustoGasto { get; set; } = 0;
+
         public int? CriadoPorId { get; set; }
 
         [ForeignKey("CriadoPorId")]
