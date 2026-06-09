@@ -86,7 +86,7 @@
             this.tbMes.Name = "tbMes";
             this.tbMes.Size = new System.Drawing.Size(132, 20);
             this.tbMes.TabIndex = 6;
-            this.tbMes.TextChanged += new System.EventHandler(this.tbMes_TextChanged);
+            
             // 
             // btnAdicionar
             // 
@@ -116,7 +116,7 @@
             this.DGV_Historico_de_Orcamentos.RowHeadersWidth = 51;
             this.DGV_Historico_de_Orcamentos.Size = new System.Drawing.Size(770, 169);
             this.DGV_Historico_de_Orcamentos.TabIndex = 9;
-            this.DGV_Historico_de_Orcamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Historico_de_Orcamentos_CellContentClick);
+            
             // 
             // btnFechar
             // 
