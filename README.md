@@ -162,8 +162,9 @@ O desenvolvimento do projeto seguiu a metedologia Scrum.
 ---
 
 ### Sprint (o que foi estipulado fazer):
+
 ### Sprint 1
-É estiulado fazer:
+Estipulou-se fazer:
 * Criação do Repositório;
 * Diagrama de Classes;
 * Construção da Base de Dados (BD);
@@ -171,7 +172,7 @@ O desenvolvimento do projeto seguiu a metedologia Scrum.
 * Escrita das Users Stories (US);
 * Fazer a secção de "Introdução" do relatório de MDS.
 
-#### Sprint 2
+### Sprint 2
 Foi feito:
 * Fazer a continuação da Introdução do relatório de MDS.
 * Tornar realidade as Users Stories:
@@ -189,9 +190,9 @@ Foi feito:
 *  Análise concorrencial;
 *  Critérios de Aceitação.
 
-#### Sprint 3
+### Sprint 3
 Focada em:
-* Fazer o ficheiro READ.MD;
+* Fazer o ficheiro README.md;
 * Introdução;
 * Aplicação SCRUM ao projeto;
 * Stakeholders;
@@ -200,7 +201,7 @@ Focada em:
 * Completar o template;
 * Incluir o resto das Users Stories que ainda não foram tornadas no que é pedido;
 * Relatório de DA;
-* Retroespective da Sprint 2, Weekly Scrum e Sprint Planning;
+* Weekly Scrum e Sprint Planning da Sprint 3;
 * Screenshot do backlog.
 
 ---
@@ -209,5 +210,107 @@ Focada em:
  
  <img width="945" height="1278" alt="Diagrama de Classes drawio (1)" src="https://github.com/user-attachments/assets/6d0882a7-f0ae-4b99-b124-9f556e1ee8b3" />
 
+---
 
+## ⚙️ Requisitos do Sistema
+Para executar a aplicação é preciso:
 
+- Windows 10 ou superior;
+- Visual Studio 2019/2022/2026 com suporte para .NET Desktop Development;
+- .NET Framework 4.7.2 Developer Pack;
+- SQL Server Express ou LocalDB;
+- Git para fazer o clone do repositório.
+
+---
+
+## 📥 Instalação
+Fazer o clone do repositório:
+```bash
+git clone https://github.com/AlexandreSousaSantos/Pl1-3-Cipher.git
+```
+
+### Abrir a Solução
+
+Abrir o ficheiro na pasta do projeto:
+```text
+Projeto_iShopping.sln
+```
+
+### Restaurar Dependências
+
+Os pacotes NuGet são restaurados automaticamente pelo Visual Studio.
+
+Caso necessário:
+```text
+Restore NuGet Packages
+```
+
+Em caso de dúvida:
+1. Ir ao painel "Explorador de Soluções" (Solution Explorer).
+2. Clicar com o botão direito do rato em cima da Solução (a linha que fica no topo de toda a lista). Onde diz Solução 'Projeto_iShopping' (1 de 1 projeto)
+3. Clicar em Restaurar Pacotes NuGet (Restore NuGet Packages).
+
+---
+
+## 🗄️ Configuração da Base de Dados
+A aplicação utiliza Entity Framework Code First.
+
+A base de dados vai ser criada automaticamente ao executar a aplicação pela primeira vez.
+
+Os dados serão guardados na base de dados.
+
+---
+
+## ▶️ Execução da Aplicação
+Executar a aplicação no Visual Studio:
+```text
+F5 (Debug)
+```
+ou
+```text
+Ctrl + F5
+```
+
+O primeiro formulário a aparecer é o de autenticação.
+
+---
+
+## 🔐 Credenciais por Defeito
+Acesso por default:
+
+| Campo | Valor |
+|------------|--------|
+| Username | admin |
+| Password | admin123 |
+
+Dá para adicionar mais utilizadores, temos de ir á página principal, no botão Utilizadores,
+adicionar o utilizador com o username e password e fazer a confirmação da mesma.
+
+---
+
+## 📂 Estrutura do Projeto
+```text
+Models/          - Entidades dos dados
+Views/           - Formulários WinForms
+Controller/      - Lógica de negócio
+Program.cs       - Inicializar a base de dados e o formulário de Login
+readme.txt       - readme de DA - apresenta os processos e dados necessários à instalação, configuração e execução da aplicação
+```
+
+A aplicação segue a arquitetura MVC (Model-View-Controller).
+
+---
+
+## 📄 Exportação de Dados
+O ficheiro utiliza o separador: virgula ( , )
+
+Campos que são exportados:
+- NomeCompra
+- DataCriacao
+- DataFechada
+- NomeArtigo
+- ArtigoPrevisto
+- ArtigoNaoPrevisto
+- QuantidadePrevista
+- QuantidadeAdquirida
+- PrecoUnitario
